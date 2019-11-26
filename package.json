@@ -43,7 +43,8 @@
         "eslint-plugin-you-dont-need-lodash-underscore": "^6.7.0",
         "jest": "^24.8.0",
         "prettier": "^1.18.2",
-        "rimraf": "^2.6.3"
+        "rimraf": "^2.6.3",
+        "storybook-addon-styled-component-theme": "^1.2.5"
     },
     "dependencies": {
         "date-fns": "^2.0.1",
