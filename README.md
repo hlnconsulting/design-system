@@ -1,2 +1,2 @@
-# @hln/ui
-React based component library and UI kit utilities for HLN projects.
+# HLN Design System
+React based design system for HLN's current and future projects.
