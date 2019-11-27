@@ -3,11 +3,11 @@
     "description": "React based design system for HLN's current and future projects.",
     "repository": {
         "type": "git",
-        "url": "https://github.com/HLN-Consulting/design-system.git"
+        "url": "https://github.com/hlnconsulting/design-system.git"
     },
-    "homepage": "https://github.com/HLN-Consulting/design-system",
+    "homepage": "https://github.com/hlnconsulting/design-system",
     "bugs": {
-        "url": "https://github.com/HLN-Consulting/design-system/issues"
+        "url": "https://github.com/hlnconsulting/design-system/issues"
     },
     "author": "Andrew Slattery <andrew@hln.com>",
     "license": "MIT",
