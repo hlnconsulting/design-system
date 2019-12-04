@@ -3,11 +3,11 @@
     "description": "React based design system for HLN's current and future projects.",
     "repository": {
         "type": "git",
-        "url": "https://github.com/HLN-Consulting/design-system.git"
+        "url": "https://github.com/hlnconsulting/design-system.git"
     },
-    "homepage": "https://github.com/HLN-Consulting/design-system",
+    "homepage": "https://github.com/hlnconsulting/design-system",
     "bugs": {
-        "url": "https://github.com/HLN-Consulting/design-system/issues"
+        "url": "https://github.com/hlnconsulting/design-system/issues"
     },
     "author": "Andrew Slattery <andrew@hln.com>",
     "license": "MIT",
@@ -43,7 +43,8 @@
         "eslint-plugin-you-dont-need-lodash-underscore": "^6.7.0",
         "jest": "^24.8.0",
         "prettier": "^1.18.2",
-        "rimraf": "^2.6.3"
+        "rimraf": "^2.6.3",
+        "storybook-addon-styled-component-theme": "^1.2.5"
     },
     "dependencies": {
         "date-fns": "^2.0.1",

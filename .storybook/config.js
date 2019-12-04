@@ -1,8 +1,14 @@
 import { addDecorator, addParameters, configure } from '@storybook/react';
 import { withA11y } from '@storybook/addon-a11y';
 import { create } from '@storybook/theming';
+import { withThemesProvider } from 'storybook-addon-styled-component-theme';
+
+import { defaultTheme } from './../src/themes/';
+
+const themes = [defaultTheme];
 
 addDecorator(withA11y);
+//addDecorator(withThemesProvider(themes));
 
 addParameters({
     options: {
