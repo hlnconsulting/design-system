@@ -32,6 +32,7 @@ TextField.propTypes = {
     inputProps: PropTypes.object,
     multiline: PropTypes.bool,
     name: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
     placeholder: PropTypes.string,
     type: PropTypes.oneOf([...TextInputOptions.type]).isRequired,
     value: PropTypes.string
@@ -42,5 +43,6 @@ TextField.defaultProps = {
     disabled: false,
     inputProps: {},
     multiline: false,
+    onChange: () => null,
     type: 'text'
 };
