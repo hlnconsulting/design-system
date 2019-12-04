@@ -8,7 +8,7 @@ import { defaultTheme } from './../src/themes/';
 const themes = [defaultTheme];
 
 addDecorator(withA11y);
-addDecorator(withThemesProvider(themes));
+//addDecorator(withThemesProvider(themes));
 
 addParameters({
     options: {
