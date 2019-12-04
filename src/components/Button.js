@@ -48,7 +48,6 @@ Button.propTypes = {
     iconPosition: PropTypes.oneOf(['left', 'right']),
     loading: PropTypes.bool,
     loadingPosition: PropTypes.oneOf(['left', 'right']),
-    placeholder: PropTypes.string,
     size: PropTypes.oneOf([...ButtonOptions.size])
 };
 
