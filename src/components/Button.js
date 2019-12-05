@@ -8,9 +8,22 @@ const ButtonOptions = {
     size: ['sm', 'md', 'lg']
 };
 
-const ButtonLabel = styled.span``;
+const ButtonLabel = styled.span`
+    color: ${(props) => props.theme.colors.text.default};
+    font-family: ${(props) => props.theme.typography.fonts.ui};
+    font-size: 1.066rem;
+    font-weight: 500;
+`;
 
-const StyledButton = styled.button``;
+const StyledButton = styled.button`
+    display: flex;
+    flex-direction: row;
+    background: ${(props) => props.theme.colors.background.default};
+    border: 1px solid ${(props) => props.theme.colors.border.muted};
+    border-radius: 3px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 0 ${(props) => props.theme.colors.neutral.N1A};
+`;
 
 export const Button = ({
     children,

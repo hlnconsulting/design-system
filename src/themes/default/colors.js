@@ -13,6 +13,13 @@ const colors = {
         MC7: `#333333`,
         MC9: `#222222`,
         MC10: `#000000`
+    },
+    neutral: {
+        N0A: `rgba(255, 255, 255, 0.06)`,
+        N1A: `rgba(67, 90, 111, 0.04)`,
+        N2A: `rgba(67, 90, 111, 0.06)`,
+        N3A: `rgba(67, 90, 111, 0.09)`,
+        N4A: `rgba(67, 90, 111, 0.14)`
     }
 };
 
@@ -22,6 +29,10 @@ const fuzzyColors = {
         tint: colors.monochrome.MC1,
         tintAlt: colors.monochrome.MC2,
         field: colors.monochrome.MC1
+    },
+    border: {
+        default: colors.neutral.N4A,
+        muted: colors.neutral.N3A
     },
     fixed: {
         black: colors.monochrome.MC10,

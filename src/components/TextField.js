@@ -9,7 +9,23 @@ const TextInputOptions = {
     type: ['text', 'tel', 'email', 'password', 'url']
 };
 
-const TextInput = styled.input``;
+const TextInput = styled(({ multiline, ...rest }) => <input {...rest} />)`
+    flex-grow: 1;
+    flex-basis: 100%;
+    background: transparent;
+    border: none;
+    border-radius: 3px;
+    box-sizing: border-box;
+    color: ${(props) => props.theme.colors.text.default};
+    font-family: ${(props) => props.theme.typography.fonts.ui};
+    font-size: 1.066rem;
+    font-weight: 500;
+    line-height: ${(props) => (props.multiline ? `1.6rem` : `1.1rem`)};
+    padding: 0.667rem;
+    :focus {
+        outline: none;
+    }
+`;
 
 export const TextField = ({ inputProps, multiline, ...props }) => {
     const a11yProps = {};
