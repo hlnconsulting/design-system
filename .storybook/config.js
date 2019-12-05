@@ -3,11 +3,13 @@ import { withA11y } from '@storybook/addon-a11y';
 import { create } from '@storybook/theming';
 import { withThemesProvider } from 'storybook-addon-styled-component-theme';
 
+import sctpd from './styled-component-theme-provider-decorator';
 import { defaultTheme } from './../src/themes/';
 
 const themes = [defaultTheme];
 
 addDecorator(withA11y);
+addDecorator(sctpd);
 //addDecorator(withThemesProvider(themes));
 
 addParameters({
