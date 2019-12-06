@@ -20,12 +20,33 @@ const InputWrapper = styled.div`
     width: 100%;
 `;
 
-export const Input = ({ children, ...props }) => {
-    return <InputWrapper {...props}>{children}</InputWrapper>;
+const InputPrefixSuffix = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: stretch;
+    background: ${(props) => props.theme.colors.background.tint};
+    border: 1px solid ${(props) => props.theme.colors.border.muted};
+    border-radius: 3px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 0 ${(props) => props.theme.colors.neutral.N1A};
+    overflow: visible;
+`;
+
+export const Input = ({ children, prefix, suffix, ...props }) => {
+    return (
+        <InputWrapper {...props}>
+            {prefix && <InputPrefixSuffix>{prefix}</InputPrefixSuffix>}
+            {children}
+            {suffix && <InputPrefixSuffix>{suffix}</InputPrefixSuffix>}
+        </InputWrapper>
+    );
 };
 
 Input.propTypes = {
-    children: PropTypes.node.isRequired
+    children: PropTypes.node.isRequired,
+    prefix: PropTypes.node,
+    suffix: PropTypes.node
 };
 
 Input.defaultProps = {};
