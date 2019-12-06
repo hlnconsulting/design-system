@@ -15,7 +15,9 @@ const ButtonLabel = styled.span`
     font-weight: 500;
 `;
 
-const StyledButton = styled(({ appearance, ...rest }) => <button {...rest} />)`
+const StyledButton = styled(({ appearance, loading, ...rest }) => (
+    <button {...rest} />
+))`
     display: inline-flex;
     flex-direction: row;
     background-color: ${(props) => props.theme.colors.background.default};
@@ -29,6 +31,7 @@ const StyledButton = styled(({ appearance, ...rest }) => <button {...rest} />)`
     user-select: none;
     :hover {
         background-color: ${(props) => props.theme.colors.background.tint};
+        cursor: pointer;
     }
     :active {
         background-color: ${(props) => props.theme.colors.background.tintAlt};
@@ -59,6 +62,9 @@ const StyledButton = styled(({ appearance, ...rest }) => <button {...rest} />)`
              background-color: ${props.theme.colors.brand.S6};
          }
      `}
+
+     ${(props) => props.disabled && `cursor: not-allowed;`}
+     ${(props) => props.loading && `cursor: wait;`}
 `;
 
 export const Button = ({
