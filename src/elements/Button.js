@@ -65,6 +65,15 @@ const StyledButton = styled(({ appearance, loading, ...rest }) => (
 
      ${(props) => props.disabled && `cursor: not-allowed;`}
      ${(props) => props.loading && `cursor: wait;`}
+
+     svg {
+         /**
+          * https://www.smashingmagazine.com/2018/05/svg-interaction-pointer-events-property/
+          * "Using pointer-events When Mixing SVG And HTML"
+          */
+         pointer-events: none;
+     }
+
 `;
 
 export const Button = ({
