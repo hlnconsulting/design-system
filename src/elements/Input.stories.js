@@ -1,12 +1,12 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 
-import { FormField } from './FormField';
+import { FormField } from './../components/FormField';
 import { Input } from './Input';
 import { TextField } from './TextField';
 
 export default {
-    title: 'Components|Form/Input Wrapper',
+    title: 'Elements|Form/Input Wrapper',
     component: Input
 };
 

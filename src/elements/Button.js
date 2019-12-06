@@ -9,20 +9,56 @@ const ButtonOptions = {
 };
 
 const ButtonLabel = styled.span`
-    color: ${(props) => props.theme.colors.text.default};
+    color: inherit;
     font-family: ${(props) => props.theme.typography.fonts.ui};
-    font-size: 1.066rem;
+    font-size: 0.966rem;
     font-weight: 500;
 `;
 
-const StyledButton = styled.button`
-    display: flex;
+const StyledButton = styled(({ appearance, ...rest }) => <button {...rest} />)`
+    display: inline-flex;
     flex-direction: row;
-    background: ${(props) => props.theme.colors.background.default};
+    background-color: ${(props) => props.theme.colors.background.default};
     border: 1px solid ${(props) => props.theme.colors.border.muted};
     border-radius: 3px;
     box-sizing: border-box;
     box-shadow: 0 2px 0 ${(props) => props.theme.colors.neutral.N1A};
+    color: ${(props) => props.theme.colors.text.default};
+    margin: 0;
+    padding: 0.42rem 0.667rem;
+    user-select: none;
+    :hover {
+        background-color: ${(props) => props.theme.colors.background.tint};
+    }
+    :active {
+        background-color: ${(props) => props.theme.colors.background.tintAlt};
+    }
+
+    ${(props) =>
+        props.appearance === 'primary' &&
+        `
+         background-color: ${props.theme.colors.brand.P5};
+         color: ${props.theme.colors.fixed.white};
+         :hover {
+             background-color: ${props.theme.colors.brand.P4};
+         }
+         :active {
+             background-color: ${props.theme.colors.brand.P6};
+         }
+     `}
+
+    ${(props) =>
+        props.appearance === 'secondary' &&
+        `
+         background-color: ${props.theme.colors.brand.S5};
+         color: ${props.theme.colors.fixed.white};
+         :hover {
+             background-color: ${props.theme.colors.brand.S4};
+         }
+         :active {
+             background-color: ${props.theme.colors.brand.S6};
+         }
+     `}
 `;
 
 export const Button = ({
@@ -43,7 +79,7 @@ export const Button = ({
 
     return (
         <StyledButton
-            as={typeof href !== 'undefined' ? 'a' : undefined}
+            as={typeof href !== 'undefined' ? 'a' : 'button'}
             {...a11yProps}
             {...props}
         >
@@ -61,6 +97,7 @@ Button.propTypes = {
     iconPosition: PropTypes.oneOf(['left', 'right']),
     loading: PropTypes.bool,
     loadingPosition: PropTypes.oneOf(['left', 'right']),
+    onClick: PropTypes.func,
     size: PropTypes.oneOf([...ButtonOptions.size])
 };
 

@@ -2,7 +2,10 @@ const colors = {
     brand: {
         P4: `#428bca`,
         P5: `#337ab7`,
-        P6: `#2e6da4`
+        P6: `#2e6da4`,
+        S4: `#899197`,
+        S5: `#6c757d`,
+        S6: `#565e64`
     },
     monochrome: {
         MC0: `#ffffff`,

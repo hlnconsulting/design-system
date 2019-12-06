@@ -2,7 +2,7 @@
 import React from 'react';
 
 import { FormField } from './FormField';
-import { TextField } from './TextField';
+import { TextField } from './../elements/TextField';
 
 export default {
     title: 'Components|Form/Field',
