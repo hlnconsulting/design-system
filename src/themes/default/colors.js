@@ -9,6 +9,7 @@ const colors = {
     },
     monochrome: {
         MC0: `#ffffff`,
+        MC05: `#fafafa`,
         MC1: `#eeeeee`,
         MC2: `#bababa`,
         MC3: `#777777`,
@@ -29,8 +30,8 @@ const colors = {
 const fuzzyColors = {
     background: {
         default: colors.monochrome.MC0,
-        tint: colors.monochrome.MC1,
-        tintAlt: colors.monochrome.MC2,
+        tint: colors.monochrome.MC05,
+        tintAlt: colors.monochrome.MC1,
         field: colors.monochrome.MC1
     },
     border: {
