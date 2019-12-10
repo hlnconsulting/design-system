@@ -54,7 +54,12 @@ export const DataTable = ({ columns, data, id, label, ...props }) => {
                             {row.cells.map((cell) => (
                                 // eslint-disable-next-line react/jsx-key
                                 <TableCell {...cell.getCellProps()}>
-                                    {cell.render('Cell')}
+                                    {typeof cell.column.renderOptions !==
+                                    'undefined'
+                                        ? cell.column.renderOptions?.values[
+                                              cell.value
+                                          ]
+                                        : cell.render('Cell')}
                                 </TableCell>
                             ))}
                         </TableRow>

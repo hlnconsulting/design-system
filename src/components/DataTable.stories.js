@@ -3,6 +3,8 @@ import React from 'react';
 
 import { DataTable } from './DataTable';
 
+import { MaterialIcon } from './../elements/MaterialIcon';
+
 export default {
     title: 'Components|Tables',
     component: DataTable
@@ -13,11 +15,37 @@ export const dataTable = () => {
             () => [
                 {
                     Header: `Specification Added?`,
-                    accessor: `specAdded`
+                    accessor: `specAdded`,
+                    renderOptions: {
+                        type: `bool`,
+                        values: {
+                            true: (
+                                <MaterialIcon
+                                    icon="check_circle_outline"
+                                    size={24}
+                                    intent="success"
+                                />
+                            ),
+                            false: (
+                                <MaterialIcon
+                                    icon="not_interested"
+                                    size={24}
+                                    intent="danger"
+                                />
+                            )
+                        }
+                    }
                 },
                 {
                     Header: `Nationally Notifiable?`,
-                    accessor: `notifyNationally`
+                    accessor: `notifyNationally`,
+                    renderOptions: {
+                        type: `bool`,
+                        values: {
+                            true: <span>Y</span>,
+                            false: <span>N</span>
+                        }
+                    }
                 },
                 {
                     Header: `Specification Name`,

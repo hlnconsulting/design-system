@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const StyledCell = styled(({ ...rest }) => <td {...rest} />)`
     margin: 0;
-    padding: 0;
+    padding: 0.66rem;
 
     span {
         color: ${(props) => props.theme.colors.text.default};

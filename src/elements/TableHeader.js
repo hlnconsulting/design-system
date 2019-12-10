@@ -7,7 +7,6 @@ const StyledThead = styled(({ ...rest }) => <thead {...rest} />)`
     tr {
         background-color: ${(props) => props.theme.colors.background.tint};
         td {
-            padding: 0.66rem 0;
             span {
                 font-weight: 600;
             }
