@@ -53,7 +53,13 @@ export const DataTable = ({ columns, data, id, label, ...props }) => {
                         <TableRow {...row.getRowProps()}>
                             {row.cells.map((cell) => (
                                 // eslint-disable-next-line react/jsx-key
-                                <TableCell {...cell.getCellProps()}>
+                                <TableCell
+                                    {...cell.getCellProps()}
+                                    style={{
+                                        ...(cell.column?.renderOptions
+                                            ?.columnStyles || {})
+                                    }}
+                                >
                                     {typeof cell.column.renderOptions !==
                                     'undefined'
                                         ? cell.column.renderOptions?.values[

@@ -17,6 +17,9 @@ export const dataTable = () => {
                     Header: `Specification Added?`,
                     accessor: `specAdded`,
                     renderOptions: {
+                        columnStyles: {
+                            textAlign: 'center'
+                        },
                         type: `bool`,
                         values: {
                             true: (
@@ -40,6 +43,9 @@ export const dataTable = () => {
                     Header: `Nationally Notifiable?`,
                     accessor: `notifyNationally`,
                     renderOptions: {
+                        columnStyles: {
+                            textAlign: 'center'
+                        },
                         type: `bool`,
                         values: {
                             true: <span>Y</span>,
@@ -83,7 +89,7 @@ export const dataTable = () => {
                     status: `Published to Production`,
                     updated: ``,
                     specAdded: true,
-                    notifyNationally: `Y`
+                    notifyNationally: true
                 },
                 {
                     name: `Carbon Monoxide Poisoning`,
@@ -92,7 +98,7 @@ export const dataTable = () => {
                     status: `In Progress`,
                     updated: ``,
                     specAdded: true,
-                    notifyNationally: `Y`
+                    notifyNationally: true
                 },
                 {
                     name: `Chlamydia`,
@@ -101,7 +107,7 @@ export const dataTable = () => {
                     status: `Published to Production`,
                     updated: ``,
                     specAdded: true,
-                    notifyNationally: `Y`
+                    notifyNationally: true
                 }
             ],
             []
