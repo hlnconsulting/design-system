@@ -2,10 +2,14 @@ const colors = {
     brand: {
         P4: `#428bca`,
         P5: `#337ab7`,
-        P6: `#2e6da4`
+        P6: `#2e6da4`,
+        S4: `#899197`,
+        S5: `#6c757d`,
+        S6: `#565e64`
     },
     monochrome: {
         MC0: `#ffffff`,
+        MC05: `#fafafa`,
         MC1: `#eeeeee`,
         MC2: `#bababa`,
         MC3: `#777777`,
@@ -26,8 +30,8 @@ const colors = {
 const fuzzyColors = {
     background: {
         default: colors.monochrome.MC0,
-        tint: colors.monochrome.MC1,
-        tintAlt: colors.monochrome.MC2,
+        tint: colors.monochrome.MC05,
+        tintAlt: colors.monochrome.MC1,
         field: colors.monochrome.MC1
     },
     border: {

@@ -27,11 +27,18 @@ const TextInput = styled(({ multiline, ...rest }) => <input {...rest} />)`
     }
 `;
 
-export const TextField = ({ inputProps, multiline, ...props }) => {
+export const TextField = ({
+    inputProps,
+    multiline,
+    prefix,
+    suffix,
+    ...props
+}) => {
     const a11yProps = {};
+    const inputPropsRemapped = { ...inputProps, ...prefix, ...suffix };
 
     return (
-        <Input {...inputProps}>
+        <Input {...inputPropsRemapped}>
             <TextInput
                 as={multiline ? 'textarea' : 'input'}
                 {...a11yProps}
@@ -50,6 +57,8 @@ TextField.propTypes = {
     name: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     placeholder: PropTypes.string,
+    prefix: PropTypes.node,
+    suffix: PropTypes.node,
     type: PropTypes.oneOf([...TextInputOptions.type]).isRequired,
     value: PropTypes.string
 };
