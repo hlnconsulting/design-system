@@ -47,7 +47,11 @@ export const DataTable = ({
                     <TableRow {...headerGroup.getHeaderGroupProps()}>
                         {headerGroup.headers.map((col) => (
                             // eslint-disable-next-line react/jsx-key
-                            <TableCell {...col.getHeaderProps()}>
+                            <TableCell
+                                {...col.getHeaderProps(
+                                    col.getSortByToggleProps()
+                                )}
+                            >
                                 {col.render('Header')}
                             </TableCell>
                         ))}
