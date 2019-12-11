@@ -46,7 +46,8 @@ const fuzzyColors = {
         success: `#5cb85c`,
         info: `#5bc0de`,
         warning: `#f0ad4e`,
-        danger: `#d9534f`
+        danger: `#d9534f`,
+        muted: colors.monochrome.MC5
     },
     text: {
         default: colors.monochrome.MC7,

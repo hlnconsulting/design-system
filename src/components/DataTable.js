@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useTable, useSortBy } from 'react-table';
+import { useTable, useFilters, useSortBy } from 'react-table';
 
 import { DataTableContainer } from './../elements/DataTableContainer';
 import { TableBody } from './../elements/TableBody';
@@ -9,7 +9,14 @@ import { TableHeader } from './../elements/TableHeader';
 import { TableRow } from './../elements/TableRow';
 import { TableCell } from './../elements/TableCell';
 
-export const DataTable = ({ columns, data, id, label, ...props }) => {
+export const DataTable = ({
+    columns,
+    data,
+    id,
+    label,
+    onFilterChange,
+    ...props
+}) => {
     const {
         getTableProps,
         getTableBodyProps,
@@ -21,13 +28,15 @@ export const DataTable = ({ columns, data, id, label, ...props }) => {
             data,
             columns
         },
+        useFilters,
         useSortBy
     );
 
     const dataTableProps = {
         displayLabel: !!(typeof label && label),
         id,
-        label
+        label,
+        onFilterChange
     };
 
     return (
@@ -81,7 +90,8 @@ DataTable.propTypes = {
     cursor: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     data: PropTypes.array.isRequired,
     id: PropTypes.string.isRequired,
-    label: PropTypes.string
+    label: PropTypes.string,
+    onFilterChange: PropTypes.func
 };
 
 DataTable.defaultProps = {

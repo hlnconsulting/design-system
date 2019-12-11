@@ -114,6 +114,11 @@ export const dataTable = () => {
         )
     };
 
+    const reactTableRef = React.useRef(null);
+
+    const onFilterChange = (e) =>
+        reactTableRef.current.setFilter(e.target.value || undefined);
+
     return (
         <>
             <DataTable
@@ -121,6 +126,8 @@ export const dataTable = () => {
                 data={DataTableSampleData.data}
                 id="story_datatable_00"
                 label="Sample Table"
+                onFilterChange={onFilterChange}
+                reactTableRef={reactTableRef}
             />
         </>
     );

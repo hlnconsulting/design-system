@@ -7,6 +7,14 @@ const StyledThead = styled(({ ...rest }) => <thead {...rest} />)`
     tr {
         background-color: ${(props) => props.theme.colors.background.tint};
         td {
+            border-top: 1px solid
+                ${(props) => props.theme.colors.background.default};
+            :first-child {
+                border-top-left-radius: 3px;
+            }
+            :last-child {
+                border-top-right-radius: 3px;
+            }
             span {
                 font-weight: 600;
             }

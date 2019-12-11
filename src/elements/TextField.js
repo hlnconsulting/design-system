@@ -6,10 +6,16 @@ import styled from 'styled-components';
 import { Input } from './Input';
 
 const TextInputOptions = {
+    size: ['sm', 'md', 'lg'],
+    sizeRatio: {
+        sm: 0.83,
+        md: 1,
+        lg: 1.17
+    },
     type: ['text', 'tel', 'email', 'password', 'url']
 };
 
-const TextInput = styled(({ multiline, ...rest }) => <input {...rest} />)`
+const TextInput = styled(({ multiline, size, ...rest }) => <input {...rest} />)`
     flex-grow: 1;
     flex-basis: 100%;
     background: transparent;
@@ -18,10 +24,13 @@ const TextInput = styled(({ multiline, ...rest }) => <input {...rest} />)`
     box-sizing: border-box;
     color: ${(props) => props.theme.colors.text.default};
     font-family: ${(props) => props.theme.typography.fonts.ui};
-    font-size: 1.066rem;
+    font-size: ${(props) => TextInputOptions.sizeRatio[props.size] * 1.066}rem;
     font-weight: 500;
-    line-height: ${(props) => (props.multiline ? `1.6rem` : `1.1rem`)};
-    padding: 0.667rem;
+    line-height: ${(props) =>
+        props.multiline
+            ? `${(props) => TextInputOptions.sizeRatio[props.size] * 1.6}rem`
+            : `${(props) => TextInputOptions.sizeRatio[props.size] * 1.1}rem`};
+    padding: 0.667rem 0.84rem;
     :focus {
         outline: none;
     }
@@ -58,6 +67,7 @@ TextField.propTypes = {
     onChange: PropTypes.func.isRequired,
     placeholder: PropTypes.string,
     prefix: PropTypes.node,
+    size: PropTypes.oneOf([...TextInputOptions.size]),
     suffix: PropTypes.node,
     type: PropTypes.oneOf([...TextInputOptions.type]).isRequired,
     value: PropTypes.string
@@ -69,5 +79,6 @@ TextField.defaultProps = {
     inputProps: {},
     multiline: false,
     onChange: () => null,
+    size: 'md',
     type: 'text'
 };
