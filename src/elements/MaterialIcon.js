@@ -34,6 +34,8 @@ const StyledIcon = styled(({ color, intent, size, ...rest }) => (
 
     /* Support for IE. */
     font-feature-settings: 'liga';
+
+    user-select: none;
 `;
 
 export const MaterialIcon = ({ icon, ...props }) => {
@@ -52,7 +54,14 @@ export const MaterialIcon = ({ icon, ...props }) => {
 MaterialIcon.propTypes = {
     color: PropTypes.string,
     icon: PropTypes.string,
-    intent: PropTypes.oneOf(['none', 'info', 'success', 'warning', 'danger']),
+    intent: PropTypes.oneOf([
+        'none',
+        'muted',
+        'info',
+        'success',
+        'warning',
+        'danger'
+    ]),
     size: PropTypes.oneOf([18, 24, 36, 48])
 };
 

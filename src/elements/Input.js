@@ -2,6 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { borderRadius } from 'polished';
 
 const InputWrapper = styled.div`
     display: flex;
@@ -23,14 +24,15 @@ const InputWrapper = styled.div`
 const InputPrefixSuffix = styled.div`
     display: flex;
     flex-direction: row;
-    align-items: stretch;
+    align-items: center;
     justify-content: stretch;
     background: ${(props) => props.theme.colors.background.tint};
-    border: 1px solid ${(props) => props.theme.colors.border.muted};
-    border-radius: 3px;
+    border-right: 1px solid ${(props) => props.theme.colors.border.muted};
+    ${borderRadius('left', '3px')}
     box-sizing: border-box;
-    box-shadow: 0 2px 0 ${(props) => props.theme.colors.neutral.N1A};
+    box-shadow: 2px 0 0 ${(props) => props.theme.colors.neutral.N1A};
     overflow: visible;
+    padding: 0 0.667rem;
 `;
 
 export const Input = ({ children, prefix, suffix, ...props }) => {
