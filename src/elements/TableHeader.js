@@ -16,6 +16,10 @@ const StyledThead = styled(({ ...rest }) => <thead {...rest} />)`
                 border-top-right-radius: 3px;
             }
             span {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
                 font-weight: 600;
             }
         }

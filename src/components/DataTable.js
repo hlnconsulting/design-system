@@ -8,6 +8,7 @@ import { TableBody } from './../elements/TableBody';
 import { TableHeader } from './../elements/TableHeader';
 import { TableRow } from './../elements/TableRow';
 import { TableCell } from './../elements/TableCell';
+import { MaterialIcon } from './../elements/MaterialIcon';
 
 export const DataTable = ({
     columns,
@@ -53,6 +54,25 @@ export const DataTable = ({
                                 )}
                             >
                                 {col.render('Header')}
+                                {col.isSorted ? (
+                                    col.isSortedDesc ? (
+                                        <MaterialIcon
+                                            icon="arrow_drop_down"
+                                            intent="info"
+                                            size={18}
+                                            // TODO: add a11y for this icon
+                                        />
+                                    ) : (
+                                        <MaterialIcon
+                                            icon="arrow_drop_up"
+                                            intent="info"
+                                            size={18}
+                                            // TODO: add a11y for this icon
+                                        />
+                                    )
+                                ) : (
+                                    ``
+                                )}
                             </TableCell>
                         ))}
                     </TableRow>
