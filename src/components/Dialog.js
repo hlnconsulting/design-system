@@ -18,6 +18,7 @@ const DialogCard = styled(({ size, ...rest }) => <div {...rest} />)`
     flex-direction: column;
     margin: 2.25rem;
     max-height: calc(100% - 64px);
+    min-width: 20rem;
     max-width: ${(props) =>
         props.size === 'sm'
             ? 36
