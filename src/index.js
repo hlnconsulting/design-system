@@ -1,7 +1,3 @@
-import { DataTable } from './components';
-
+export * from './components';
 export * from './elements';
-
-import { defaultTheme } from './themes';
-
-export { defaultTheme, DataTable };
+export * from './themes';
