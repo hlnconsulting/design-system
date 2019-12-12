@@ -11,22 +11,24 @@ const ButtonOptions = {
 const ButtonLabel = styled.span`
     color: inherit;
     font-family: ${(props) => props.theme.typography.fonts.ui};
-    font-size: 0.966rem;
-    font-weight: 500;
+    font-size: 0.9rem;
+    font-weight: 600;
 `;
 
-const StyledButton = styled(({ appearance, loading, ...rest }) => (
+const StyledButton = styled(({ appearance, loading, text, ...rest }) => (
     <button {...rest} />
 ))`
     display: inline-flex;
     flex-direction: row;
     background-color: ${(props) => props.theme.colors.background.default};
-    border: 1px solid ${(props) => props.theme.colors.border.muted};
+    border: ${(props) =>
+        props.text ? `none` : `1px solid ${props.theme.colors.border.muted}`};
     border-radius: 3px;
     box-sizing: border-box;
-    box-shadow: 0 2px 0 ${(props) => props.theme.colors.neutral.N1A};
-    color: ${(props) => props.theme.colors.text.default};
-    margin: 0;
+    box-shadow: ${(props) =>
+        props.text ? `none` : `0 2px 0 ${props.theme.colors.neutral.N1A}`};
+    color: ${(props) => props.theme.colors.text.muted};
+    margin: 0.1337rem;
     padding: 0.42rem 0.667rem;
     user-select: none;
     :hover {
@@ -40,26 +42,60 @@ const StyledButton = styled(({ appearance, loading, ...rest }) => (
     ${(props) =>
         props.appearance === 'primary' &&
         `
-         background-color: ${props.theme.colors.brand.P5};
-         color: ${props.theme.colors.fixed.white};
+         background-color: ${
+             props.text
+                 ? props.theme.colors.background.default
+                 : props.theme.colors.brand.P5
+         };
+         color: ${
+             props.text
+                 ? props.theme.colors.brand.P5
+                 : props.theme.colors.fixed.white
+         };
          :hover {
-             background-color: ${props.theme.colors.brand.P4};
+             background-color: ${
+                 props.text
+                     ? props.theme.colors.brand.P1
+                     : props.theme.colors.brand.P4
+             };
          }
          :active {
-             background-color: ${props.theme.colors.brand.P6};
+             color: ${props.theme.colors.fixed.white};
+             background-color: ${
+                 props.text
+                     ? props.theme.colors.brand.P3
+                     : props.theme.colors.brand.P6
+             };
          }
      `}
 
     ${(props) =>
         props.appearance === 'secondary' &&
         `
-         background-color: ${props.theme.colors.brand.S5};
-         color: ${props.theme.colors.fixed.white};
+         background-color: ${
+             props.text
+                 ? props.theme.colors.background.default
+                 : props.theme.colors.brand.S5
+         };
+         color: ${
+             props.text
+                 ? props.theme.colors.brand.S5
+                 : props.theme.colors.fixed.white
+         };
          :hover {
-             background-color: ${props.theme.colors.brand.S4};
+             background-color: ${
+                 props.text
+                     ? props.theme.colors.brand.S1
+                     : props.theme.colors.brand.S4
+             };
          }
          :active {
-             background-color: ${props.theme.colors.brand.S6};
+             color: ${props.theme.colors.fixed.white};
+             background-color: ${
+                 props.text
+                     ? props.theme.colors.brand.S3
+                     : props.theme.colors.brand.S6
+             };
          }
      `}
 
@@ -113,7 +149,8 @@ Button.propTypes = {
     loading: PropTypes.bool,
     loadingPosition: PropTypes.oneOf(['left', 'right']),
     onClick: PropTypes.func,
-    size: PropTypes.oneOf([...ButtonOptions.size])
+    size: PropTypes.oneOf([...ButtonOptions.size]),
+    text: PropTypes.bool
 };
 
 Button.defaultProps = {
@@ -122,5 +159,6 @@ Button.defaultProps = {
     iconPosition: 'left',
     loading: false,
     loadingPosition: 'left',
-    size: 'md'
+    size: 'md',
+    text: false
 };
