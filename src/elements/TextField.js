@@ -25,7 +25,7 @@ const TextInput = styled(({ multiline, size, ...rest }) => <input {...rest} />)`
     color: ${(props) => props.theme.colors.text.default};
     font-family: ${(props) => props.theme.typography.fonts.ui};
     font-size: ${(props) => TextInputOptions.sizeRatio[props.size] * 1.066}rem;
-    font-weight: 500;
+    font-weight: 400;
     line-height: ${(props) =>
         props.multiline
             ? `${(props) => TextInputOptions.sizeRatio[props.size] * 1.6}rem`
