@@ -36,7 +36,7 @@ const ModalContainer = styled(({ ...rest }) => <div {...rest} />)`
     outline: 0;
 `;
 
-export const Modal = ({ children, visible, ...props }) => {
+export const Modal = ({ children, close, visible, ...props }) => {
     const a11yProps = {};
 
     return (
@@ -45,7 +45,7 @@ export const Modal = ({ children, visible, ...props }) => {
             role="presentation"
             visible={visible}
         >
-            <ModalBackdrop ariaHidden />
+            <ModalBackdrop ariaHidden onClick={close} />
             <ModalContainer {...a11yProps} {...props}>
                 {children}
             </ModalContainer>
@@ -55,6 +55,7 @@ export const Modal = ({ children, visible, ...props }) => {
 
 Modal.propTypes = {
     children: PropTypes.node.isRequired,
+    close: PropTypes.func,
     visible: PropTypes.bool
 };
 

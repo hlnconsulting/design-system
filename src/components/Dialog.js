@@ -12,7 +12,8 @@ const DialogOptions = {
 const DialogCard = styled(({ size, ...rest }) => <div {...rest} />)`
     background-color: ${(props) => props.theme.colors.background.default};
     border-radius: 3px;
-    box-shadow: 2px 0 0 ${(props) => props.theme.colors.neutral.N1A};
+    box-shadow: 2px 0 0 ${(props) => props.theme.colors.neutral.N1A},
+        0 0.33rem 2rem ${(props) => props.theme.colors.neutral.N6A};
     display: flex;
     flex-direction: column;
     margin: 2.25rem;
@@ -27,8 +28,9 @@ const DialogCard = styled(({ size, ...rest }) => <div {...rest} />)`
             : 84}rem;
 `;
 
-export const Dialog = ({ children, visible, ...props }) => {
+export const Dialog = ({ children, close, visible, ...props }) => {
     const modalProps = {
+        close,
         visible
     };
 
@@ -41,6 +43,7 @@ export const Dialog = ({ children, visible, ...props }) => {
 
 Dialog.propTypes = {
     children: PropTypes.node.isRequired,
+    close: PropTypes.func,
     id: PropTypes.string.isRequired,
     label: PropTypes.string,
     size: PropTypes.oneOf([...DialogOptions.size]),
