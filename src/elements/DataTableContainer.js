@@ -10,6 +10,7 @@ const StyledDataTable = styled(({ ...rest }) => <table {...rest} />)`
     border-radius: 3px;
     border-spacing: 0;
     box-shadow: 0 2px 0 ${(props) => props.theme.colors.neutral.N1A};
+    width: 100%;
 `;
 
 const DataTableMasthead = styled(({ display, ...rest }) => <div {...rest} />)`
