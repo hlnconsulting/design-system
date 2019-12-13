@@ -28,6 +28,7 @@
         "@storybook/addon-viewport": "^5.1.8",
         "@storybook/addons": "^5.1.8",
         "@storybook/react": "^5.1.8",
+        "@storybook/storybook-deployer": "^2.8.1",
         "@storybook/theming": "^5.1.8",
         "babel-eslint": "^10.0.2",
         "babel-jest": "^24.8.0",
@@ -63,6 +64,7 @@
         "clean": "rimraf ./dist",
         "storybook": "start-storybook -p 6006",
         "build-storybook": "build-storybook",
+        "build": "build-storybook -c .storybook -o public",
         "test": "jest"
     },
     "version": "0.3.0"
