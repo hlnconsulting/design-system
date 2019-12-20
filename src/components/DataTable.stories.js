@@ -128,6 +128,7 @@ export const dataTable = () => {
                 label="Sample Table"
                 onFilterChange={onFilterChange}
                 reactTableRef={reactTableRef}
+                showHeader
             />
         </>
     );

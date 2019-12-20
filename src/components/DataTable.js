@@ -11,7 +11,14 @@ import { TableRow } from './../elements/TableRow';
 import { TableCell } from './../elements/TableCell';
 import { MaterialIcon } from './../elements/MaterialIcon';
 
-export const DataTable = ({ columns, data, id, label, ...props }) => {
+export const DataTable = ({
+    columns,
+    data,
+    id,
+    label,
+    showHeader,
+    ...props
+}) => {
     const {
         getTableProps,
         getTableBodyProps,
@@ -38,11 +45,13 @@ export const DataTable = ({ columns, data, id, label, ...props }) => {
 
     return (
         <>
-            <DataTableHeader
-                {...dataTableProps}
-                globalFilterContext={state.globalFilter}
-                onFilterChange={setGlobalFilter}
-            />
+            {showHeader && (
+                <DataTableHeader
+                    {...dataTableProps}
+                    globalFilterContext={state.globalFilter}
+                    onFilterChange={setGlobalFilter}
+                />
+            )}
             <DataTableContainer {...dataTableProps} {...getTableProps()}>
                 <TableHeader>
                     {headerGroups.map((headerGroup) => (
