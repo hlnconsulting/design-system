@@ -8,6 +8,9 @@ import { TableBody } from './TableBody';
 import { TableCell } from './TableCell';
 import { TableHeader } from './TableHeader';
 import { TableRow } from './TableRow';
+import { DialogHeader } from './DialogHeader';
+import { DialogFooter } from './DialogFooter';
+import { DialogBody } from './DialogBody';
 
 export {
     Button,
@@ -19,5 +22,8 @@ export {
     TableBody,
     TableCell,
     TableHeader,
-    TableRow
+    TableRow,
+    DialogHeader,
+    DialogFooter,
+    DialogBody
 };
