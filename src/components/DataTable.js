@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useTable, useFilters, useGlobalFilter, useSortBy } from 'react-table';
 
+import { DataTableActions } from './DataTableActions';
 import { DataTableContainer } from './../elements/DataTableContainer';
 import { DataTableHeader } from './../elements/DataTableHeader';
 import { TableBody } from './../elements/TableBody';
@@ -10,6 +11,29 @@ import { TableHeader } from './../elements/TableHeader';
 import { TableRow } from './../elements/TableRow';
 import { TableCell } from './../elements/TableCell';
 import { MaterialIcon } from './../elements/MaterialIcon';
+
+const RenderDataTableCell = ({ datum, ...props }) => {
+    return (
+        <TableCell
+            {...datum.getCellProps()}
+            style={{
+                ...(datum.column?.renderOptions?.columnStyles || {})
+            }}
+        >
+            {typeof datum.column.renderOptions !== 'undefined' ? (
+                datum.column.renderOptions?.values[datum.value]
+            ) : typeof datum.column.DataTableActions !== 'undefined' ? (
+                <DataTableActions actions={datum.value} />
+            ) : (
+                datum.render('Cell')
+            )}
+        </TableCell>
+    );
+};
+
+RenderDataTableCell.propTypes = {
+    datum: PropTypes.object
+};
 
 export const DataTable = ({
     columns,
@@ -97,20 +121,7 @@ export const DataTable = ({
                             <TableRow {...row.getRowProps()}>
                                 {row.cells.map((cell) => (
                                     // eslint-disable-next-line react/jsx-key
-                                    <TableCell
-                                        {...cell.getCellProps()}
-                                        style={{
-                                            ...(cell.column?.renderOptions
-                                                ?.columnStyles || {})
-                                        }}
-                                    >
-                                        {typeof cell.column.renderOptions !==
-                                        'undefined'
-                                            ? cell.column.renderOptions?.values[
-                                                  cell.value
-                                              ]
-                                            : cell.render('Cell')}
-                                    </TableCell>
+                                    <RenderDataTableCell datum={cell} />
                                 ))}
                             </TableRow>
                         );
