@@ -9,6 +9,7 @@ export default {
     title: 'Components|Tables',
     component: DataTable
 };
+
 export const dataTable = () => {
     const DataTableSampleData = {
         columns: React.useMemo(

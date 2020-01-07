@@ -3,13 +3,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+const StyledTableContainer = styled(({ ...rest }) => <div {...rest} />)`
+    display: flex;
+    overflow-x: auto;
+`;
+
 const StyledDataTable = styled(({ ...rest }) => <table {...rest} />)`
     border: 1px solid ${(props) => props.theme.colors.border.default};
     border-radius: 3px;
     border-spacing: 0;
     box-shadow: 0 2px 0 ${(props) => props.theme.colors.neutral.N1A};
-    width: 100%;
 `;
+
 export const DataTableContainer = ({
     children,
     displayLabel,
@@ -23,9 +28,11 @@ export const DataTableContainer = ({
     };
 
     return (
-        <StyledDataTable {...a11yProps} {...props}>
-            {children}
-        </StyledDataTable>
+        <StyledTableContainer>
+            <StyledDataTable {...a11yProps} {...props}>
+                {children}
+            </StyledDataTable>
+        </StyledTableContainer>
     );
 };
 
