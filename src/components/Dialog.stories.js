@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
+import { withKnobs, select } from '@storybook/addon-knobs';
 
 import { Button } from './../elements/Button';
 import { Dialog } from './Dialog';
@@ -9,7 +10,8 @@ import { DialogHeader } from './../elements/DialogHeader';
 
 export default {
     title: 'Components|Dialog',
-    component: Dialog
+    component: Dialog,
+    decorators: [withKnobs]
 };
 
 export const dialog = () => {
@@ -17,7 +19,20 @@ export const dialog = () => {
 
     return (
         <div style={{ height: `30rem` }}>
-            <Dialog close={CloseDialog} visible>
+            <Dialog
+                close={CloseDialog}
+                visible
+                size={select(
+                    `Size`,
+                    {
+                        Small: `sm`,
+                        Medium: `md`,
+                        Large: `lg`,
+                        Unset: null
+                    },
+                    `md`
+                )}
+            >
                 <DialogHeader close={CloseDialog}>Hello there.</DialogHeader>
                 <DialogBody>
                     <p style={{ margin: `1.33rem 0 0 0` }}>
