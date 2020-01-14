@@ -15,9 +15,9 @@ const DialogSizeMap = {
     lg: 64
 };
 
-const DialogCard = styled(({ size, ...rest }) => <div {...rest} />)`
+const DialogCard = styled(({ rounder, size, ...rest }) => <div {...rest} />)`
     background-color: ${(props) => props.theme.colors.background.default};
-    border-radius: 3px;
+    border-radius: ${(props) => props.theme.constants.corner};
     box-shadow: 2px 0 0 ${(props) => props.theme.colors.neutral.N1A},
         0 0.33rem 2rem ${(props) => props.theme.colors.neutral.N6A};
     display: flex;

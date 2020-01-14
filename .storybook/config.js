@@ -16,6 +16,12 @@ addParameters({
     options: {
         isFullscreen: false,
         showPanel: true,
+        storySort: (a, b) =>
+            a[1].kind === b[1].kind
+                ? 0
+                : a[1].id.startsWith(`overview`)
+                ? -1
+                : a[1].id.localeCompare(b[1].id, undefined, { numeric: true }),
         theme: create({
             base: 'light',
             brandTitle: 'HLN Design System',

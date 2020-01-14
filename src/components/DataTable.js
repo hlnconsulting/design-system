@@ -38,6 +38,7 @@ RenderDataTableCell.propTypes = {
 export const DataTable = ({
     columns,
     data,
+    fullWidth,
     id,
     label,
     showHeader,
@@ -63,6 +64,7 @@ export const DataTable = ({
 
     const dataTableProps = {
         displayLabel: !!(typeof label && label),
+        fullWidth,
         id,
         label
     };
@@ -136,6 +138,7 @@ DataTable.propTypes = {
     columns: PropTypes.array.isRequired,
     cursor: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     data: PropTypes.array.isRequired,
+    fullWidth: PropTypes.bool,
     id: PropTypes.string.isRequired,
     label: PropTypes.string,
     showHeader: PropTypes.bool
@@ -145,5 +148,6 @@ DataTable.defaultProps = {
     columns: [],
     cursor: 0,
     data: [],
+    fullWidth: true,
     showHeader: false
 };

@@ -26,6 +26,7 @@ const FormatGroupLabel = (data) => (
 
 export const SelectField = ({
     disabled,
+    error,
     inputProps,
     prefix,
     size,
@@ -33,7 +34,12 @@ export const SelectField = ({
     ...props
 }) => {
     const a11yProps = {};
-    const inputPropsRemapped = { ...inputProps, ...prefix, ...suffix };
+    const inputPropsRemapped = {
+        error: error,
+        ...inputProps,
+        ...prefix,
+        ...suffix
+    };
     const hlnThemeContext = useContext(ThemeContext);
 
     return (
@@ -83,6 +89,11 @@ export const SelectField = ({
 SelectField.propTypes = {
     closeMenuOnSelect: PropTypes.bool,
     disabled: PropTypes.bool,
+    error: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.object,
+        PropTypes.string
+    ]),
     id: PropTypes.string.isRequired,
     inputProps: PropTypes.object,
     isClearable: PropTypes.bool,
@@ -103,6 +114,7 @@ SelectField.propTypes = {
 SelectField.defaultProps = {
     checked: false,
     disabled: false,
+    error: false,
     inputProps: {},
     onChange: () => null,
     options: [],
