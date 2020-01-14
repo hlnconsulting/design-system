@@ -117,11 +117,6 @@ export const dataTable = () => {
         )
     };
 
-    const reactTableRef = React.useRef(null);
-
-    const onFilterChange = (e) =>
-        reactTableRef.current.setFilter(e.target.value || undefined);
-
     return (
         <>
             <DataTable
@@ -130,8 +125,6 @@ export const dataTable = () => {
                 fullWidth={boolean(`Full Width Table`, true)}
                 id="story_datatable_00"
                 label="Sample Table"
-                onFilterChange={onFilterChange}
-                reactTableRef={reactTableRef}
                 showHeader={boolean(`Table Header`, true)}
             />
         </>
