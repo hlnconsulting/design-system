@@ -37,6 +37,7 @@ const TextInput = styled(({ multiline, size, ...rest }) => <input {...rest} />)`
 `;
 
 export const TextField = ({
+    error,
     inputProps,
     multiline,
     prefix,
@@ -44,7 +45,12 @@ export const TextField = ({
     ...props
 }) => {
     const a11yProps = {};
-    const inputPropsRemapped = { ...inputProps, ...prefix, ...suffix };
+    const inputPropsRemapped = {
+        error: error,
+        ...inputProps,
+        ...prefix,
+        ...suffix
+    };
 
     return (
         <Input {...inputPropsRemapped}>
@@ -60,6 +66,11 @@ export const TextField = ({
 TextField.propTypes = {
     autoComplete: PropTypes.string,
     disabled: PropTypes.bool,
+    error: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.object,
+        PropTypes.string
+    ]),
     id: PropTypes.string.isRequired,
     inputProps: PropTypes.object,
     multiline: PropTypes.bool,
@@ -76,6 +87,7 @@ TextField.propTypes = {
 TextField.defaultProps = {
     autoComplete: 'on',
     disabled: false,
+    error: false,
     inputProps: {},
     multiline: false,
     onChange: () => null,

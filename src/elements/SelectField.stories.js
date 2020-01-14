@@ -7,7 +7,8 @@ import { SelectField } from './SelectField';
 
 export default {
     title: 'Elements|Form/Select Input',
-    component: SelectField
+    component: SelectField,
+    decorators: [withKnobs]
 };
 
 export const selectFieldDefault = () => (
@@ -41,8 +42,7 @@ export const selectFieldDefault = () => (
 );
 
 selectFieldDefault.story = {
-    name: 'Overview',
-    decorators: [withKnobs]
+    name: 'Overview'
 };
 
 export const selectFieldGrouped = () => (
@@ -94,6 +94,5 @@ export const selectFieldGrouped = () => (
 );
 
 selectFieldGrouped.story = {
-    name: 'Grouped',
-    decorators: [withKnobs]
+    name: 'Grouped'
 };
