@@ -12,28 +12,39 @@ export default {
     decorators: [withKnobs]
 };
 
-export const field = () => (
-    <>
-        <FormField
-            error={boolean(`Error State`, false)}
-            label="<TextField />"
-            labelFor="story_field_input_00"
-        >
-            <TextField id="story_field_input_00" name="story_field_input_00" />
-        </FormField>
-        <FormField
-            error={boolean(`Error State`, false)}
-            label="<SelectField />"
-            labelFor="story_field_input_01"
-            subtext={`This is a fancy selector example, with a subtext prop passed.`}
-        >
-            <SelectField
-                id="story_field_input_01"
-                name="story_field_input_01"
-            />
-        </FormField>
-    </>
-);
+export const field = () => {
+    const errorState = boolean(`Error State`, false);
+
+    return (
+        <>
+            <FormField
+                error={errorState}
+                label="<TextField />"
+                labelFor="story_field_input_00"
+            >
+                <TextField
+                    id="story_field_input_00"
+                    name="story_field_input_00"
+                />
+            </FormField>
+            <FormField
+                error={
+                    errorState
+                        ? `This is an example of setting error state, with an error string.`
+                        : false
+                }
+                label="<SelectField />"
+                labelFor="story_field_input_01"
+                subtext={`This is a fancy selector example, with a subtext prop passed.`}
+            >
+                <SelectField
+                    id="story_field_input_01"
+                    name="story_field_input_01"
+                />
+            </FormField>
+        </>
+    );
+};
 
 field.story = {
     name: 'Overview'
