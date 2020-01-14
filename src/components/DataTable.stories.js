@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
+import { withKnobs, boolean } from '@storybook/addon-knobs';
 
 import { DataTable } from './DataTable';
 
@@ -7,7 +8,8 @@ import { MaterialIcon } from './../elements/MaterialIcon';
 
 export default {
     title: 'Components|Tables',
-    component: DataTable
+    component: DataTable,
+    decorators: [withKnobs]
 };
 
 export const dataTable = () => {
@@ -125,11 +127,12 @@ export const dataTable = () => {
             <DataTable
                 columns={DataTableSampleData.columns}
                 data={DataTableSampleData.data}
+                fullWidth={boolean(`Full Width Table`, true)}
                 id="story_datatable_00"
                 label="Sample Table"
                 onFilterChange={onFilterChange}
                 reactTableRef={reactTableRef}
-                showHeader
+                showHeader={boolean(`Table Header`, true)}
             />
         </>
     );

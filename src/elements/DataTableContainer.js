@@ -8,11 +8,12 @@ const StyledTableContainer = styled(({ ...rest }) => <div {...rest} />)`
     overflow-x: auto;
 `;
 
-const StyledDataTable = styled(({ ...rest }) => <table {...rest} />)`
+const StyledDataTable = styled(({ fullWidth, ...rest }) => <table {...rest} />)`
     border: 1px solid ${(props) => props.theme.colors.border.default};
     border-radius: 3px;
     border-spacing: 0;
     box-shadow: 0 2px 0 ${(props) => props.theme.colors.neutral.N1A};
+    width: ${(props) => (props.fullWidth ? `100%` : `auto`)};
 `;
 
 export const DataTableContainer = ({
@@ -39,6 +40,7 @@ export const DataTableContainer = ({
 DataTableContainer.propTypes = {
     children: PropTypes.node.isRequired,
     displayLabel: PropTypes.bool,
+    fullWidth: PropTypes.bool,
     id: PropTypes.string,
     label: PropTypes.string
 };
