@@ -20,7 +20,10 @@ const StyledButton = styled(({ appearance, loading, text, ...rest }) => (
 ))`
     display: inline-flex;
     flex-direction: row;
-    background-color: ${(props) => props.theme.colors.background.default};
+    background-color: ${(props) =>
+        props.disabled
+            ? props.theme.colors.background.tint
+            : props.theme.colors.background.default};
     border: ${(props) =>
         props.text ? `none` : `1px solid ${props.theme.colors.border.muted}`};
     border-radius: 3px;
@@ -36,7 +39,8 @@ const StyledButton = styled(({ appearance, loading, text, ...rest }) => (
         cursor: pointer;
     }
     :active {
-        background-color: ${(props) => props.theme.colors.background.tintAlt};
+        background-color: ${(props) =>
+            !props.disabled && props.theme.colors.background.tintAlt};
     }
 
     ${(props) =>
@@ -44,7 +48,11 @@ const StyledButton = styled(({ appearance, loading, text, ...rest }) => (
         `
          background-color: ${
              props.text
-                 ? props.theme.colors.background.default
+                 ? props.disabled
+                     ? props.theme.colors.brand.P1
+                     : props.theme.colors.background.default
+                 : props.disabled
+                 ? props.theme.colors.brand.P3
                  : props.theme.colors.brand.P5
          };
          color: ${
@@ -56,13 +64,19 @@ const StyledButton = styled(({ appearance, loading, text, ...rest }) => (
              background-color: ${
                  props.text
                      ? props.theme.colors.brand.P1
+                     : props.disabled
+                     ? props.theme.colors.brand.P3
                      : props.theme.colors.brand.P4
              };
          }
          :active {
-             color: ${props.theme.colors.fixed.white};
+             color: ${!props.disabled && props.theme.colors.fixed.white};
              background-color: ${
                  props.text
+                     ? props.disabled
+                         ? props.theme.colors.brand.P1
+                         : props.theme.colors.brand.P3
+                     : props.disabled
                      ? props.theme.colors.brand.P3
                      : props.theme.colors.brand.P6
              };
@@ -72,35 +86,45 @@ const StyledButton = styled(({ appearance, loading, text, ...rest }) => (
     ${(props) =>
         props.appearance === 'secondary' &&
         `
-         background-color: ${
-             props.text
-                 ? props.theme.colors.background.default
-                 : props.theme.colors.brand.S5
-         };
-         color: ${
-             props.text
-                 ? props.theme.colors.brand.S5
-                 : props.theme.colors.fixed.white
-         };
-         :hover {
-             background-color: ${
-                 props.text
-                     ? props.theme.colors.brand.S1
-                     : props.theme.colors.brand.S4
-             };
-         }
-         :active {
-             color: ${props.theme.colors.fixed.white};
-             background-color: ${
-                 props.text
-                     ? props.theme.colors.brand.S3
-                     : props.theme.colors.brand.S6
-             };
-         }
+        background-color: ${
+            props.text
+                ? props.disabled
+                    ? props.theme.colors.brand.S1
+                    : props.theme.colors.background.default
+                : props.disabled
+                ? props.theme.colors.brand.S3
+                : props.theme.colors.brand.S5
+        };
+        color: ${
+            props.text
+                ? props.theme.colors.brand.S5
+                : props.theme.colors.fixed.white
+        };
+        :hover {
+            background-color: ${
+                props.text
+                    ? props.theme.colors.brand.S1
+                    : props.disabled
+                    ? props.theme.colors.brand.S3
+                    : props.theme.colors.brand.S4
+            };
+        }
+        :active {
+            color: ${!props.disabled && props.theme.colors.fixed.white};
+            background-color: ${
+                props.text
+                    ? props.disabled
+                        ? props.theme.colors.brand.S1
+                        : props.theme.colors.brand.S3
+                    : props.disabled
+                    ? props.theme.colors.brand.S3
+                    : props.theme.colors.brand.S6
+            };
+        }
      `}
 
-     ${(props) => props.disabled && `cursor: not-allowed;`}
-     ${(props) => props.loading && `cursor: wait;`}
+     ${(props) => props.disabled && `cursor: not-allowed !important;`}
+     ${(props) => props.loading && `cursor: wait !important;`}
 
      svg {
          /**
@@ -114,6 +138,7 @@ const StyledButton = styled(({ appearance, loading, text, ...rest }) => (
 
 export const Button = ({
     children,
+    disabled,
     href,
     icon,
     iconPosition,
@@ -131,6 +156,8 @@ export const Button = ({
     return (
         <StyledButton
             as={typeof href !== 'undefined' ? 'a' : 'button'}
+            disabled={loading || disabled}
+            loading={loading}
             {...a11yProps}
             {...props}
         >
