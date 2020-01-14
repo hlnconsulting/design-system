@@ -22,6 +22,10 @@ const TableLabel = styled.h3`
     margin: 1.337rem 0;
 `;
 
+const StyledDataTableFilter = styled(({ ...rest }) => <div {...rest} />)`
+    flex-basis: 33.37%;
+`;
+
 export const DataTableHeader = ({
     displayLabel,
     globalFilterContext,
@@ -34,12 +38,14 @@ export const DataTableHeader = ({
         <DataTableMasthead display={displayLabel}>
             <TableLabel id={id}>{label}</TableLabel>
             {typeof onFilterChange === 'function' && (
-                <DataTableFilter
-                    onChange={(e) =>
-                        onFilterChange(e.target.value || undefined)
-                    }
-                    value={globalFilterContext || ``}
-                />
+                <StyledDataTableFilter>
+                    <DataTableFilter
+                        onChange={(e) =>
+                            onFilterChange(e.target.value || undefined)
+                        }
+                        value={globalFilterContext || ``}
+                    />
+                </StyledDataTableFilter>
             )}
         </DataTableMasthead>
     );
