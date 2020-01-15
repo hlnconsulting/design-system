@@ -5,6 +5,7 @@ import { useTable, useFilters, useGlobalFilter, useSortBy } from 'react-table';
 
 import { DataTableActions } from './DataTableActions';
 import { DataTableContainer } from './../elements/DataTableContainer';
+import { DataTableControlDeck } from './../elements/DataTableControlDeck';
 import { DataTableHeader } from './../elements/DataTableHeader';
 import { TableBody } from './../elements/TableBody';
 import { TableHeader } from './../elements/TableHeader';
@@ -41,9 +42,10 @@ export const DataTable = ({
     fullWidth,
     id,
     label,
+    setTableState,
+    showControlDeck,
     showHeader,
     tableState,
-    setTableState,
     ...props
 }) => {
     const {
@@ -75,6 +77,8 @@ export const DataTable = ({
         id,
         label
     };
+
+    // TODO: add controlDeckProps and then spread that into the comp below
 
     return (
         <>
@@ -137,6 +141,7 @@ export const DataTable = ({
                     })}
                 </TableBody>
             </DataTableContainer>
+            {showControlDeck && <DataTableControlDeck />}
         </>
     );
 };
@@ -148,9 +153,11 @@ DataTable.propTypes = {
     fullWidth: PropTypes.bool,
     id: PropTypes.string.isRequired,
     label: PropTypes.string,
+    numRows: PropTypes.number,
+    setTableState: PropTypes.func,
+    showControlDeck: PropTypes.bool,
     showHeader: PropTypes.bool,
-    tableState: PropTypes.object,
-    setTableState: PropTypes.func
+    tableState: PropTypes.object
 };
 
 DataTable.defaultProps = {
@@ -158,6 +165,8 @@ DataTable.defaultProps = {
     cursor: 0,
     data: [],
     fullWidth: true,
+    numRows: 10,
+    showControlDeck: true,
     showHeader: false,
     tableState: {}
 };

@@ -125,6 +125,7 @@ export const dataTable = () => {
                 fullWidth={boolean(`Full Width Table`, true)}
                 id="story_datatable_00"
                 label="Sample Table"
+                showControlDeck={boolean(`Control Deck`, true)}
                 showHeader={boolean(`Table Header`, true)}
             />
         </>
