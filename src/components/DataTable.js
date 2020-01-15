@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useTable, useFilters, useGlobalFilter, useSortBy } from 'react-table';
 
@@ -42,6 +42,8 @@ export const DataTable = ({
     id,
     label,
     showHeader,
+    tableState,
+    setTableState,
     ...props
 }) => {
     const {
@@ -55,12 +57,17 @@ export const DataTable = ({
     } = useTable(
         {
             data,
-            columns
+            columns,
+            initialState: tableState
         },
         useFilters,
         useGlobalFilter,
         useSortBy
     );
+
+    useEffect(() => {
+        typeof setTableState === 'function' && setTableState(state);
+    });
 
     const dataTableProps = {
         displayLabel: !!(typeof label && label),
@@ -141,7 +148,9 @@ DataTable.propTypes = {
     fullWidth: PropTypes.bool,
     id: PropTypes.string.isRequired,
     label: PropTypes.string,
-    showHeader: PropTypes.bool
+    showHeader: PropTypes.bool,
+    tableState: PropTypes.object,
+    setTableState: PropTypes.func
 };
 
 DataTable.defaultProps = {
@@ -149,5 +158,6 @@ DataTable.defaultProps = {
     cursor: 0,
     data: [],
     fullWidth: true,
-    showHeader: false
+    showHeader: false,
+    tableState: {}
 };
