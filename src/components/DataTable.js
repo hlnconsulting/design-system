@@ -38,7 +38,9 @@ RenderDataTableCell.propTypes = {
 
 export const DataTable = ({
     columns,
+    controlButtons,
     data,
+    entityLabels,
     fullWidth,
     id,
     label,
@@ -78,7 +80,10 @@ export const DataTable = ({
         label
     };
 
-    // TODO: add controlDeckProps and then spread that into the comp below
+    const controlDeckProps = {
+        buttons: controlButtons,
+        ...entityLabels
+    };
 
     return (
         <>
@@ -141,15 +146,17 @@ export const DataTable = ({
                     })}
                 </TableBody>
             </DataTableContainer>
-            {showControlDeck && <DataTableControlDeck />}
+            {showControlDeck && <DataTableControlDeck {...controlDeckProps} />}
         </>
     );
 };
 
 DataTable.propTypes = {
     columns: PropTypes.array.isRequired,
+    controlButtons: PropTypes.array,
     cursor: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     data: PropTypes.array.isRequired,
+    entityLabels: PropTypes.object,
     fullWidth: PropTypes.bool,
     id: PropTypes.string.isRequired,
     label: PropTypes.string,
@@ -162,8 +169,13 @@ DataTable.propTypes = {
 
 DataTable.defaultProps = {
     columns: [],
+    controlButtons: [],
     cursor: 0,
     data: [],
+    enitityLabels: {
+        singular: `entry`,
+        plural: `entries`
+    },
     fullWidth: true,
     numRows: 10,
     showControlDeck: true,

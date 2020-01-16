@@ -73,10 +73,6 @@ export const dataTable = () => {
                     accessor: `status`
                 },
                 {
-                    Header: `Last Updated`,
-                    accessor: `updated`
-                },
-                {
                     Header: ``,
                     accessor: `controls`
                 }
@@ -90,7 +86,6 @@ export const dataTable = () => {
                     version: `0.0`,
                     category: `Enteric Diseases`,
                     status: `Published to Production`,
-                    updated: ``,
                     specAdded: true,
                     notifyNationally: true
                 },
@@ -99,7 +94,6 @@ export const dataTable = () => {
                     version: `1.0`,
                     category: `Toxic Effects of Non-Medicinal Substances`,
                     status: `In Progress`,
-                    updated: ``,
                     specAdded: true,
                     notifyNationally: true
                 },
@@ -108,7 +102,6 @@ export const dataTable = () => {
                     version: `2.0`,
                     category: `Sexually Transmitted Infections`,
                     status: `Published to Production`,
-                    updated: ``,
                     specAdded: true,
                     notifyNationally: true
                 }
@@ -123,8 +116,12 @@ export const dataTable = () => {
                 columns={DataTableSampleData.columns}
                 data={DataTableSampleData.data}
                 fullWidth={boolean(`Full Width Table`, true)}
+                enitityLabels={{
+                    singular: `specification`,
+                    plural: `specifications`
+                }}
                 id="story_datatable_00"
-                label="Sample Table"
+                label="Reporting Specification Manager"
                 showControlDeck={boolean(`Control Deck`, true)}
                 showHeader={boolean(`Table Header`, true)}
             />
