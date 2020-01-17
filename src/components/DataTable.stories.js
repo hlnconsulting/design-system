@@ -4,6 +4,7 @@ import { withKnobs, boolean } from '@storybook/addon-knobs';
 
 import { DataTable } from './DataTable';
 
+import { Button } from './../elements/Button';
 import { MaterialIcon } from './../elements/MaterialIcon';
 
 export default {
@@ -114,6 +115,17 @@ export const dataTable = () => {
         <>
             <DataTable
                 columns={DataTableSampleData.columns}
+                controlButtons={[
+                    <Button
+                        appearance={`primary`}
+                        key={`story_datatable_controlButton_00`}
+                    >
+                        Button
+                    </Button>,
+                    <Button key={`story_datatable_controlButton_01`}>
+                        Button
+                    </Button>
+                ]}
                 data={DataTableSampleData.data}
                 fullWidth={boolean(`Full Width Table`, true)}
                 enitityLabels={{
