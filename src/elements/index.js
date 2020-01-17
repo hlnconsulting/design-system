@@ -1,5 +1,6 @@
 import { Button } from './Button';
 import { DataTableContainer } from './DataTableContainer';
+import { DataTableControlDeck } from './DataTableControlDeck';
 import { Input } from './Input';
 import { MaterialIcon } from './MaterialIcon';
 import { SelectField } from './SelectField';
@@ -15,6 +16,7 @@ import { DialogBody } from './DialogBody';
 export {
     Button,
     DataTableContainer,
+    DataTableControlDeck,
     Input,
     MaterialIcon,
     SelectField,
