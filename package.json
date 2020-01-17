@@ -67,5 +67,5 @@
         "build": "build-storybook -c .storybook -o public",
         "test": "jest"
     },
-    "version": "0.6.11"
+    "version": "0.6.12"
 }
