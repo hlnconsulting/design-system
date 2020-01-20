@@ -128,12 +128,14 @@ export const dataTable = () => {
                 ]}
                 data={DataTableSampleData.data}
                 fullWidth={boolean(`Full Width Table`, true)}
-                enitityLabels={{
+                entityLabels={{
                     singular: `specification`,
                     plural: `specifications`
                 }}
+                error={boolean(`Error State?`, false)}
                 id="story_datatable_00"
                 label="Reporting Specification Manager"
+                loading={boolean(`Loading Rows?`, false)}
                 showControlDeck={boolean(`Control Deck`, true)}
                 showHeader={boolean(`Table Header`, true)}
             />
@@ -143,4 +145,45 @@ export const dataTable = () => {
 
 dataTable.story = {
     name: 'Data Table'
+};
+
+export const dataTableWithEmptyState = () => {
+    const DataTableSampleData = {
+        columns: React.useMemo(
+            () => [
+                {
+                    Header: `Specification Added?`
+                },
+                {
+                    Header: `Nationally Notifiable?`
+                },
+                {
+                    Header: `Specification Name`
+                }
+            ],
+            []
+        ),
+        data: React.useMemo(() => [], [])
+    };
+
+    return (
+        <>
+            <DataTable
+                columns={DataTableSampleData.columns}
+                data={DataTableSampleData.data}
+                fullWidth
+                entityLabels={{
+                    singular: `specification`,
+                    plural: `specifications`
+                }}
+                id="story_datatable_01"
+                label="Reporting Specification Manager"
+                showHeader
+            />
+        </>
+    );
+};
+
+dataTableWithEmptyState.story = {
+    name: 'Data Table Empty State'
 };
