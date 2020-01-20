@@ -9,13 +9,10 @@ const DialogBodyContainer = styled(({ dense, ...rest }) => <div {...rest} />)`
     flex-direction: column;
     align-items: stretch;
     padding: ${(props) => (props.dense ? `0` : `1rem 1.337rem`)};
-
-    p {
-        color: ${(props) => props.theme.colors.text.default};
-        font-family: ${(props) => props.theme.typography.fonts.ui};
-        font-size: 0.9337rem;
-        font-weight: 400;
-    }
+    color: ${(props) => props.theme.colors.text.default};
+    font-family: ${(props) => props.theme.typography.fonts.ui};
+    font-size: 0.9337rem;
+    font-weight: 400;
 `;
 
 export const DialogBody = ({ ...props }) => {

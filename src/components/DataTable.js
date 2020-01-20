@@ -5,8 +5,10 @@ import { useTable, useFilters, useGlobalFilter, useSortBy } from 'react-table';
 
 import { DataTableActions } from './DataTableActions';
 import { DataTableContainer } from './../elements/DataTableContainer';
+import { DataTableControlDeck } from './../elements/DataTableControlDeck';
 import { DataTableHeader } from './../elements/DataTableHeader';
 import { TableBody } from './../elements/TableBody';
+import { TableEmptyState } from './../elements/TableEmptyState';
 import { TableHeader } from './../elements/TableHeader';
 import { TableRow } from './../elements/TableRow';
 import { TableCell } from './../elements/TableCell';
@@ -37,13 +39,18 @@ RenderDataTableCell.propTypes = {
 
 export const DataTable = ({
     columns,
+    controlButtons,
     data,
+    entityLabels,
+    error,
     fullWidth,
     id,
     label,
+    loading,
+    setTableState,
+    showControlDeck,
     showHeader,
     tableState,
-    setTableState,
     ...props
 }) => {
     const {
@@ -74,6 +81,11 @@ export const DataTable = ({
         fullWidth,
         id,
         label
+    };
+
+    const controlDeckProps = {
+        buttons: controlButtons,
+        ...entityLabels
     };
 
     return (
@@ -122,42 +134,73 @@ export const DataTable = ({
                         </TableRow>
                     ))}
                 </TableHeader>
-                <TableBody {...getTableBodyProps()}>
-                    {rows.map((row, i) => {
-                        prepareRow(row);
-                        return (
-                            // eslint-disable-next-line react/jsx-key
-                            <TableRow {...row.getRowProps()}>
-                                {row.cells.map((cell) => (
-                                    // eslint-disable-next-line react/jsx-key
-                                    <RenderDataTableCell datum={cell} />
-                                ))}
-                            </TableRow>
-                        );
-                    })}
+                <TableBody loading={loading} {...getTableBodyProps()}>
+                    {!error && rows.length ? (
+                        rows.map((row, i) => {
+                            prepareRow(row);
+                            return (
+                                // eslint-disable-next-line react/jsx-key
+                                <TableRow {...row.getRowProps()}>
+                                    {row.cells.map((cell) => (
+                                        // eslint-disable-next-line react/jsx-key
+                                        <RenderDataTableCell datum={cell} />
+                                    ))}
+                                </TableRow>
+                            );
+                        })
+                    ) : (
+                        <TableRow>
+                            <TableEmptyState
+                                cols={columns.length}
+                                error={error}
+                                label={entityLabels?.plural || `data`}
+                                query={state?.globalFilter || ``}
+                            />
+                        </TableRow>
+                    )}
                 </TableBody>
             </DataTableContainer>
+            {showControlDeck && <DataTableControlDeck {...controlDeckProps} />}
         </>
     );
 };
 
 DataTable.propTypes = {
     columns: PropTypes.array.isRequired,
+    controlButtons: PropTypes.array,
     cursor: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     data: PropTypes.array.isRequired,
+    entityLabels: PropTypes.object,
+    error: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.object,
+        PropTypes.string
+    ]),
     fullWidth: PropTypes.bool,
     id: PropTypes.string.isRequired,
     label: PropTypes.string,
+    loading: PropTypes.bool,
+    numRows: PropTypes.number,
+    setTableState: PropTypes.func,
+    showControlDeck: PropTypes.bool,
     showHeader: PropTypes.bool,
-    tableState: PropTypes.object,
-    setTableState: PropTypes.func
+    tableState: PropTypes.object
 };
 
 DataTable.defaultProps = {
     columns: [],
+    controlButtons: [],
     cursor: 0,
     data: [],
+    entityLabels: {
+        singular: `entry`,
+        plural: `entries`
+    },
+    error: false,
     fullWidth: true,
+    loading: false,
+    numRows: 10,
+    showControlDeck: true,
     showHeader: false,
     tableState: {}
 };

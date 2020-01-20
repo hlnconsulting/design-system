@@ -10,11 +10,9 @@ export default {
 };
 
 export const field = () => (
-    <>
-        <ErrorBoundary>
-            <ForceErrorBoundary />
-        </ErrorBoundary>
-    </>
+    <ErrorBoundary>
+        <ForceErrorBoundary />
+    </ErrorBoundary>
 );
 
 field.story = {
