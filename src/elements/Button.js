@@ -3,6 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import { Spinner } from './Spinner';
+
 const ButtonOptions = {
     appearance: ['primary', 'secondary', 'tertiary'],
     size: ['sm', 'md', 'lg']
@@ -136,7 +138,13 @@ const StyledButton = styled(({ appearance, loading, text, ...rest }) => (
 
 `;
 
+const PaddedSpinner = styled(({ position, ...rest }) => <Spinner {...rest} />)`
+    margin: ${(props) =>
+        props.position === 'left' ? `0 0.667rem 0 0` : `0 0 0 0.667rem`};
+`;
+
 export const Button = ({
+    appearance,
     children,
     disabled,
     href,
@@ -153,15 +161,26 @@ export const Button = ({
         a11yProps['aria-label'] = 'Loading ...';
     }
 
+    const ProppedSpinner = (
+        <PaddedSpinner
+            position={loadingPosition}
+            primary={appearance === 'tertiary'}
+            size={18}
+        />
+    );
+
     return (
         <StyledButton
             as={typeof href !== 'undefined' ? 'a' : 'button'}
+            appearance={appearance}
             disabled={loading || disabled}
             loading={loading}
             {...a11yProps}
             {...props}
         >
+            {loadingPosition === 'left' && loading && ProppedSpinner}
             <ButtonLabel>{children}</ButtonLabel>
+            {loadingPosition === 'right' && loading && ProppedSpinner}
         </StyledButton>
     );
 };

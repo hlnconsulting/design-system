@@ -7,9 +7,9 @@ import styled from 'styled-components';
  * https://codepen.io/mrrocks/pen/EiplA
  * @type {StyledComponent}
  */
-const IndeterminateSpinner = styled(({ id, options, ...rest }) => (
-    <svg {...rest} />
-))`
+const IndeterminateSpinner = styled(
+    ({ color, id, options, primary, ...rest }) => <svg {...rest} />
+)`
     animation: rotator ${(props) => props.options.duration}s linear infinite;
 
     @keyframes rotator {
