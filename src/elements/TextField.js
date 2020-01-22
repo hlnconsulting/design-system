@@ -15,7 +15,9 @@ const TextInputOptions = {
     type: ['text', 'tel', 'email', 'password', 'url']
 };
 
-const TextInput = styled(({ multiline, size, ...rest }) => <input {...rest} />)`
+const TextInput = styled(({ multiline, size, valueAlign, ...rest }) => (
+    <input {...rest} />
+))`
     flex-grow: 1;
     flex-basis: 100%;
     background: transparent;
@@ -31,6 +33,7 @@ const TextInput = styled(({ multiline, size, ...rest }) => <input {...rest} />)`
             ? `${(props) => TextInputOptions.sizeRatio[props.size] * 1.6}rem`
             : `${(props) => TextInputOptions.sizeRatio[props.size] * 1.1}rem`};
     padding: 0.667rem 0.84rem;
+    text-align: ${(props) => props.valueAlign || `left`};
     :focus {
         outline: none;
     }
@@ -81,7 +84,8 @@ TextField.propTypes = {
     size: PropTypes.oneOf([...TextInputOptions.size]),
     suffix: PropTypes.node,
     type: PropTypes.oneOf([...TextInputOptions.type]).isRequired,
-    value: PropTypes.string
+    value: PropTypes.string,
+    valueAlign: PropTypes.string
 };
 
 TextField.defaultProps = {
@@ -92,5 +96,6 @@ TextField.defaultProps = {
     multiline: false,
     onChange: () => null,
     size: 'md',
-    type: 'text'
+    type: 'text',
+    valueAlign: 'left'
 };

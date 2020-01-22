@@ -7,6 +7,8 @@ import { DataTable } from './DataTable';
 import { Button } from './../elements/Button';
 import { MaterialIcon } from './../elements/MaterialIcon';
 
+const chance = require('chance').Chance();
+
 export default {
     title: 'Components|Tables',
     component: DataTable,
@@ -186,4 +188,67 @@ export const dataTableWithEmptyState = () => {
 
 dataTableWithEmptyState.story = {
     name: 'Data Table Empty State'
+};
+
+export const dataTableWithPagination = () => {
+    const GenerateRandomData = (numData) => {
+        let randomData = [];
+        for (let i = 0; i < numData; i++) {
+            randomData.push({ v: chance.bool({ likelihood: 42 }) });
+        }
+        return randomData;
+    };
+
+    const DataTableSampleData = {
+        columns: React.useMemo(
+            () => [
+                {
+                    Header: `Random Data?`,
+                    accessor: `v`,
+                    renderOptions: {
+                        type: `bool`,
+                        values: {
+                            true: <span>Y</span>,
+                            false: <span>N</span>
+                        }
+                    }
+                }
+            ],
+            []
+        ),
+        data: React.useMemo(() => GenerateRandomData(117), [])
+    };
+
+    return (
+        <>
+            <DataTable
+                columns={DataTableSampleData.columns}
+                controlButtons={[
+                    <Button
+                        appearance={`primary`}
+                        key={`story_datatable_controlButton_02`}
+                    >
+                        Button
+                    </Button>,
+                    <Button key={`story_datatable_controlButton_03`}>
+                        Button
+                    </Button>
+                ]}
+                data={DataTableSampleData.data}
+                fullWidth
+                entityLabels={{
+                    singular: `datum`,
+                    plural: `datums`
+                }}
+                id="story_datatable_02"
+                label="Random Datums"
+                paginated
+                showHeader
+            />
+        </>
+    );
+};
+
+dataTableWithPagination.story = {
+    name: 'Data Table with Pagination'
 };
