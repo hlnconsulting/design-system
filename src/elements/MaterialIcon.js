@@ -56,6 +56,7 @@ MaterialIcon.propTypes = {
     icon: PropTypes.string,
     intent: PropTypes.oneOf([
         'none',
+        'brand',
         'muted',
         'info',
         'success',

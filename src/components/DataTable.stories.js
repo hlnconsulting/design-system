@@ -216,13 +216,24 @@ export const dataTableWithPagination = () => {
             ],
             []
         ),
-        data: React.useMemo(() => GenerateRandomData(100), [])
+        data: React.useMemo(() => GenerateRandomData(117), [])
     };
 
     return (
         <>
             <DataTable
                 columns={DataTableSampleData.columns}
+                controlButtons={[
+                    <Button
+                        appearance={`primary`}
+                        key={`story_datatable_controlButton_02`}
+                    >
+                        Button
+                    </Button>,
+                    <Button key={`story_datatable_controlButton_03`}>
+                        Button
+                    </Button>
+                ]}
                 data={DataTableSampleData.data}
                 fullWidth
                 entityLabels={{

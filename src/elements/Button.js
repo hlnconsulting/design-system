@@ -11,17 +11,22 @@ const ButtonOptions = {
 };
 
 const ButtonLabel = styled.span`
+    display: flex;
     color: inherit;
     font-family: ${(props) => props.theme.typography.fonts.ui};
     font-size: 0.9rem;
     font-weight: 600;
 `;
 
-const StyledButton = styled(({ appearance, loading, text, ...rest }) => (
-    <button {...rest} />
-))`
+const StyledButton = styled(
+    ({ appearance, interactive, loading, text, ...rest }) => (
+        <button {...rest} />
+    )
+)`
     display: inline-flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
     background-color: ${(props) =>
         props.disabled
             ? props.theme.colors.background.tint
@@ -37,12 +42,15 @@ const StyledButton = styled(({ appearance, loading, text, ...rest }) => (
     padding: 0.42rem 0.667rem;
     user-select: none;
     :hover {
-        background-color: ${(props) => props.theme.colors.background.tint};
-        cursor: pointer;
+        background-color: ${(props) =>
+            props.interactive ? props.theme.colors.background.tint : `inherit`};
+        cursor: ${(props) => (props.interactive ? `pointer` : `default`)};
     }
     :active {
         background-color: ${(props) =>
-            !props.disabled && props.theme.colors.background.tintAlt};
+            !props.disabled
+                ? props.theme.colors.background.tintAlt
+                : `inherit`};
     }
 
     ${(props) =>
@@ -192,6 +200,7 @@ Button.propTypes = {
     href: PropTypes.string,
     icon: PropTypes.node,
     iconPosition: PropTypes.oneOf(['left', 'right']),
+    interactive: PropTypes.bool,
     loading: PropTypes.bool,
     loadingPosition: PropTypes.oneOf(['left', 'right']),
     onClick: PropTypes.func,
@@ -203,6 +212,7 @@ Button.defaultProps = {
     appearance: 'tertiary',
     disabled: false,
     iconPosition: 'left',
+    interactive: true,
     loading: false,
     loadingPosition: 'left',
     size: 'md',

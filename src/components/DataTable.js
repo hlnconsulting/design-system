@@ -1,7 +1,13 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useTable, useFilters, useGlobalFilter, useSortBy, usePagination } from 'react-table';
+import {
+    useTable,
+    useFilters,
+    useGlobalFilter,
+    usePagination,
+    useSortBy
+} from 'react-table';
 
 import { DataTableActions } from './DataTableActions';
 import { DataTableContainer } from './../elements/DataTableContainer';
@@ -47,15 +53,15 @@ export const DataTable = ({
     id,
     label,
     loading,
+    numRowsInitialValue,
+    paginated,
     setTableState,
     showControlDeck,
     showHeader,
     tableState,
-    paged,
     ...props
 }) => {
-
-    let tableArgs = [
+    const reactTableArgs = [
         {
             data,
             columns,
@@ -63,11 +69,9 @@ export const DataTable = ({
         },
         useFilters,
         useGlobalFilter,
-        useSortBy
+        useSortBy,
+        usePagination // Not alphashorted due to exception if placed before useSortBy
     ];
-    if (paged) {
-        tableArgs = [...tableArgs, usePagination];
-    }
 
     const {
         getTableProps,
@@ -81,13 +85,11 @@ export const DataTable = ({
         page,
         gotoPage,
         previousPage,
-        nextPage,
-        setPageSize,
         canPreviousPage,
-        canNextPage
-    } = useTable(
-        ...tableArgs
-    );
+        nextPage,
+        canNextPage,
+        setPageSize
+    } = useTable(...reactTableArgs);
 
     useEffect(() => {
         typeof setTableState === 'function' && setTableState(state);
@@ -100,14 +102,26 @@ export const DataTable = ({
         label
     };
 
+    const paginationProps = {
+        backward: previousPage,
+        backwardDisabled: !canPreviousPage,
+        forward: nextPage,
+        forwardDisabled: !canNextPage,
+        goToPage: (v) => gotoPage(Number(v)), // Force number type
+        numPages: pageOptions.length || 1,
+        numRows: state.pageSize || numRowsInitialValue,
+        pageIndex: state.pageIndex || 0,
+        setNumRows: (v) => setPageSize(Number(v)) // Force number type
+    };
+
     const controlDeckProps = {
         buttons: controlButtons,
+        pagination: paginated ? paginationProps : false,
         ...entityLabels
     };
 
     return (
         <>
-
             {showHeader && (
                 <DataTableHeader
                     {...dataTableProps}
@@ -115,23 +129,6 @@ export const DataTable = ({
                     onFilterChange={setGlobalFilter}
                 />
             )}
-            {paged &&
-            <div>
-                <select
-                    value={state.pageSize}
-                    onChange={e => {
-                        setPageSize(Number(e.target.value))
-                    }}
-                >
-                    {[10, 20, 30, 40, 50].map(pageSize => (
-                        <option key={pageSize} value={pageSize}>
-                            Show {pageSize}
-                        </option>
-                    ))}
-                </select>
-                {` Entries`}
-            </div>
-            }
             <DataTableContainer {...dataTableProps} {...getTableProps()}>
                 <TableHeader>
                     {headerGroups.map((headerGroup) => (
@@ -171,7 +168,7 @@ export const DataTable = ({
                 </TableHeader>
                 <TableBody loading={loading} {...getTableBodyProps()}>
                     {!error && rows.length ? (
-                        (paged ? page : rows).map((row, i) => {
+                        (paginated && page ? page : rows).map((row, i) => {
                             prepareRow(row);
                             return (
                                 // eslint-disable-next-line react/jsx-key
@@ -195,34 +192,6 @@ export const DataTable = ({
                     )}
                 </TableBody>
             </DataTableContainer>
-            {paged &&
-            <div>
-                <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-                    Previous Page
-                </button>
-                <button onClick={() => nextPage()} disabled={!canNextPage}>
-                    Next Page
-                </button>
-                <div>
-                    Page{' '}
-                    <em>
-                        {state.pageIndex + 1} of {pageOptions.length}
-                    </em>
-                </div>
-                <div>
-                    Go to page:
-                    <input
-                        type="number"
-                        defaultValue={state.pageIndex + 1}
-                        onChange={e => {
-                            const page = e.target.value ? Number(e.target.value) - 1 : 0
-                            gotoPage(page)
-                        }}
-                        style={{ width: '100px' }}
-                    />
-                </div>
-            </div>
-            }
             {showControlDeck && <DataTableControlDeck {...controlDeckProps} />}
         </>
     );
@@ -243,12 +212,12 @@ DataTable.propTypes = {
     id: PropTypes.string.isRequired,
     label: PropTypes.string,
     loading: PropTypes.bool,
-    numRows: PropTypes.number,
+    numRowsInitialValue: PropTypes.number,
+    paginated: PropTypes.bool,
     setTableState: PropTypes.func,
     showControlDeck: PropTypes.bool,
     showHeader: PropTypes.bool,
-    tableState: PropTypes.object,
-    paged: PropTypes.bool
+    tableState: PropTypes.object
 };
 
 DataTable.defaultProps = {
@@ -263,9 +232,9 @@ DataTable.defaultProps = {
     error: false,
     fullWidth: true,
     loading: false,
-    numRows: 10,
+    numRowsInitialValue: 10,
+    paginated: false,
     showControlDeck: true,
     showHeader: false,
-    tableState: {},
-    paged: false
+    tableState: {}
 };
