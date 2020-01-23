@@ -13,12 +13,17 @@ const InputContainer = styled.div`
 `;
 
 // eslint-disable-next-line handle-callback-err
-const InputWrapper = styled(({ error, ...rest }) => <div {...rest} />)`
+const InputWrapper = styled(({ disabled, error, ...rest }) => (
+    <div {...rest} />
+))`
     display: flex;
     flex-direction: row;
     align-items: stretch;
     justify-content: stretch;
-    background: ${(props) => props.theme.colors.background.default};
+    background: ${(props) =>
+        props.disabled
+            ? props.theme.colors.background.tint
+            : props.theme.colors.background.default};
     border: 1px solid
         ${(props) =>
             props.error

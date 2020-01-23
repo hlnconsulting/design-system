@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import { MaterialIcon } from './MaterialIcon';
 import { Spinner } from './Spinner';
 
 const ButtonOptions = {
@@ -19,9 +20,15 @@ const ButtonLabel = styled.span`
 `;
 
 const StyledButton = styled(
-    ({ appearance, interactive, loading, text, ...rest }) => (
-        <button {...rest} />
-    )
+    ({
+        appearance,
+        hasIcon,
+        iconPosition,
+        interactive,
+        loading,
+        text,
+        ...rest
+    }) => <button {...rest} />
 )`
     display: inline-flex;
     flex-direction: row;
@@ -39,18 +46,26 @@ const StyledButton = styled(
         props.text ? `none` : `0 2px 0 ${props.theme.colors.neutral.N1A}`};
     color: ${(props) => props.theme.colors.text.muted};
     margin: 0.1337rem;
+    min-height: ${(props) => (props.hasIcon ? `2.85rem` : `unset`)};
     padding: 0.42rem 0.667rem;
     user-select: none;
+
     :hover {
         background-color: ${(props) =>
             props.interactive ? props.theme.colors.background.tint : `inherit`};
         cursor: ${(props) => (props.interactive ? `pointer` : `default`)};
     }
+
     :active {
         background-color: ${(props) =>
             !props.disabled
                 ? props.theme.colors.background.tintAlt
                 : `inherit`};
+    }
+
+    i {
+        margin: ${(props) =>
+            props.iconPosition === 'left' ? `0 0.66rem 0 0` : `0 0 0 0.66rem`}
     }
 
     ${(props) =>
@@ -159,7 +174,6 @@ export const Button = ({
     icon,
     iconPosition,
     loading,
-    loadingPosition,
     ...props
 }) => {
     const a11yProps = {};
@@ -169,12 +183,16 @@ export const Button = ({
         a11yProps['aria-label'] = 'Loading ...';
     }
 
-    const ProppedSpinner = (
+    let renderIcon = loading ? (
         <PaddedSpinner
-            position={loadingPosition}
+            position={iconPosition}
             primary={appearance === 'tertiary'}
             size={18}
         />
+    ) : icon ? (
+        <MaterialIcon icon={icon} />
+    ) : (
+        false
     );
 
     return (
@@ -182,13 +200,15 @@ export const Button = ({
             as={typeof href !== 'undefined' ? 'a' : 'button'}
             appearance={appearance}
             disabled={loading || disabled}
+            hasIcon={!!icon}
+            iconPosition={iconPosition}
             loading={loading}
             {...a11yProps}
             {...props}
         >
-            {loadingPosition === 'left' && loading && ProppedSpinner}
+            {iconPosition === 'left' && renderIcon}
             <ButtonLabel>{children}</ButtonLabel>
-            {loadingPosition === 'right' && loading && ProppedSpinner}
+            {iconPosition === 'right' && renderIcon}
         </StyledButton>
     );
 };
@@ -202,7 +222,6 @@ Button.propTypes = {
     iconPosition: PropTypes.oneOf(['left', 'right']),
     interactive: PropTypes.bool,
     loading: PropTypes.bool,
-    loadingPosition: PropTypes.oneOf(['left', 'right']),
     onClick: PropTypes.func,
     size: PropTypes.oneOf([...ButtonOptions.size]),
     text: PropTypes.bool
@@ -214,7 +233,6 @@ Button.defaultProps = {
     iconPosition: 'left',
     interactive: true,
     loading: false,
-    loadingPosition: 'left',
     size: 'md',
     text: false
 };
