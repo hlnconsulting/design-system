@@ -20,3 +20,19 @@ export const field = () => (
 field.story = {
     name: 'Overview'
 };
+
+export const disabledField = () => (
+    <>
+        <FormField label="Label" labelFor="story_field_input_01">
+            <TextField
+                id="story_field_input_01"
+                name="story_field_input_01"
+                disabled
+            />
+        </FormField>
+    </>
+);
+
+disabledField.story = {
+    name: 'Disabled'
+};

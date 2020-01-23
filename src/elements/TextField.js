@@ -37,9 +37,13 @@ const TextInput = styled(({ multiline, size, valueAlign, ...rest }) => (
     :focus {
         outline: none;
     }
+    :hover {
+        cursor: ${(props) => (props.disabled ? `not-allowed` : `text`)};
+    }
 `;
 
 export const TextField = ({
+    disabled,
     error,
     inputProps,
     multiline,
@@ -49,6 +53,7 @@ export const TextField = ({
 }) => {
     const a11yProps = {};
     const inputPropsRemapped = {
+        disabled: disabled,
         error: error,
         ...inputProps,
         ...prefix,
@@ -59,6 +64,7 @@ export const TextField = ({
         <Input {...inputPropsRemapped}>
             <TextInput
                 as={multiline ? 'textarea' : 'input'}
+                disabled={disabled}
                 {...a11yProps}
                 {...props}
             />
