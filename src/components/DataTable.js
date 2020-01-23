@@ -120,13 +120,22 @@ export const DataTable = ({
         ...entityLabels
     };
 
+    const setGlobalFilterAndResetPageIndex = (v) => {
+        setGlobalFilter(v);
+        gotoPage(0);
+    };
+
     return (
         <>
             {showHeader && (
                 <DataTableHeader
                     {...dataTableProps}
                     globalFilterContext={state.globalFilter}
-                    onFilterChange={setGlobalFilter}
+                    onFilterChange={
+                        paginated
+                            ? setGlobalFilterAndResetPageIndex
+                            : setGlobalFilter
+                    }
                 />
             )}
             <DataTableContainer {...dataTableProps} {...getTableProps()}>
