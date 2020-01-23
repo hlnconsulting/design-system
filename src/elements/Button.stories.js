@@ -33,6 +33,24 @@ export const buttons = () => (
         >
             Tertiary
         </Button>
+        <br />
+        <br />
+        <Button
+            appearance="primary"
+            disabled={boolean(`Disabled`, false)}
+            icon={`healing`}
+            loading={boolean(`Loading`, false)}
+        >
+            Tertiary with Icon
+        </Button>
+        <Button
+            appearance="tertiary"
+            disabled={boolean(`Disabled`, false)}
+            icon={`healing`}
+            loading={boolean(`Loading`, false)}
+        >
+            Tertiary with Icon
+        </Button>
     </>
 );
 
