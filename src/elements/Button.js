@@ -74,7 +74,7 @@ const StyledButton = styled(
          background-color: ${
              props.text
                  ? props.disabled
-                     ? props.theme.colors.brand.P1
+                     ? props.theme.colors.background.tint
                      : props.theme.colors.background.default
                  : props.disabled
                  ? props.theme.colors.brand.P3
@@ -88,7 +88,9 @@ const StyledButton = styled(
          :hover {
              background-color: ${
                  props.text
-                     ? props.theme.colors.brand.P1
+                     ? props.disabled
+                         ? props.theme.colors.background.tint
+                         : props.theme.colors.brand.P1
                      : props.disabled
                      ? props.theme.colors.brand.P3
                      : props.theme.colors.brand.P4
@@ -114,7 +116,7 @@ const StyledButton = styled(
         background-color: ${
             props.text
                 ? props.disabled
-                    ? props.theme.colors.brand.S1
+                    ? props.theme.colors.background.tint
                     : props.theme.colors.background.default
                 : props.disabled
                 ? props.theme.colors.brand.S3
@@ -128,7 +130,9 @@ const StyledButton = styled(
         :hover {
             background-color: ${
                 props.text
-                    ? props.theme.colors.brand.S1
+                    ? props.disabled
+                        ? props.theme.colors.background.tint
+                        : props.theme.colors.brand.S1
                     : props.disabled
                     ? props.theme.colors.brand.S3
                     : props.theme.colors.brand.S4
