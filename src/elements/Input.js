@@ -13,7 +13,7 @@ const InputContainer = styled.div`
 `;
 
 // eslint-disable-next-line handle-callback-err
-const InputWrapper = styled(({ disabled, error, ...rest }) => (
+const InputWrapper = styled(({ disabled, error, readOnly, ...rest }) => (
     <div {...rest} />
 ))`
     display: flex;
@@ -26,14 +26,18 @@ const InputWrapper = styled(({ disabled, error, ...rest }) => (
             : props.theme.colors.background.default};
     border: 1px solid
         ${(props) =>
-            props.error
+            props.readOnly
+                ? `transparent`
+                : props.error
                 ? props.theme.colors.intent.danger
                 : props.theme.colors.border.muted};
     border-radius: 3px;
     box-sizing: border-box;
     box-shadow: 0 2px 0
         ${(props) =>
-            props.error
+            props.readOnly
+                ? `transparent`
+                : props.error
                 ? lighten(0.33, props.theme.colors.intent.danger)
                 : props.theme.colors.neutral.N1A};
     overflow: visible;
@@ -87,9 +91,11 @@ Input.propTypes = {
         PropTypes.string
     ]),
     prefix: PropTypes.node,
+    readOnly: PropTypes.bool,
     suffix: PropTypes.node
 };
 
 Input.defaultProps = {
-    error: false
+    error: false,
+    readOnly: false
 };

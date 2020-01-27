@@ -15,9 +15,9 @@ const TextInputOptions = {
     type: ['text', 'tel', 'email', 'password', 'url']
 };
 
-const TextInput = styled(({ multiline, size, valueAlign, ...rest }) => (
-    <input {...rest} />
-))`
+const TextInput = styled(
+    ({ multiline, readOnly, size, valueAlign, ...rest }) => <input {...rest} />
+)`
     flex-grow: 1;
     flex-basis: 100%;
     background: transparent;
@@ -38,7 +38,8 @@ const TextInput = styled(({ multiline, size, valueAlign, ...rest }) => (
         outline: none;
     }
     :hover {
-        cursor: ${(props) => (props.disabled ? `not-allowed` : `text`)};
+        cursor: ${(props) =>
+            props.disabled && !props.readOnly ? `not-allowed` : `text`};
     }
 `;
 
@@ -48,6 +49,7 @@ export const TextField = ({
     inputProps,
     multiline,
     prefix,
+    readOnly,
     suffix,
     ...props
 }) => {
@@ -55,6 +57,7 @@ export const TextField = ({
     const inputPropsRemapped = {
         disabled: disabled,
         error: error,
+        readOnly: readOnly,
         ...inputProps,
         ...prefix,
         ...suffix
@@ -64,7 +67,8 @@ export const TextField = ({
         <Input {...inputPropsRemapped}>
             <TextInput
                 as={multiline ? 'textarea' : 'input'}
-                disabled={disabled}
+                disabled={disabled || readOnly}
+                readOnly={readOnly}
                 {...a11yProps}
                 {...props}
             />
@@ -87,6 +91,7 @@ TextField.propTypes = {
     onChange: PropTypes.func.isRequired,
     placeholder: PropTypes.string,
     prefix: PropTypes.node,
+    readOnly: PropTypes.bool,
     size: PropTypes.oneOf([...TextInputOptions.size]),
     suffix: PropTypes.node,
     type: PropTypes.oneOf([...TextInputOptions.type]).isRequired,
@@ -101,6 +106,7 @@ TextField.defaultProps = {
     inputProps: {},
     multiline: false,
     onChange: () => null,
+    readOnly: false,
     size: 'md',
     type: 'text',
     valueAlign: 'left'

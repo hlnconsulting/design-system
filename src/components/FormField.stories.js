@@ -14,6 +14,7 @@ export default {
 
 export const field = () => {
     const errorState = boolean(`Error State`, false);
+    const readOnly = boolean(`Read Only`, false);
 
     return (
         <>
@@ -21,6 +22,7 @@ export const field = () => {
                 error={errorState}
                 label="<TextField />"
                 labelFor="story_field_input_00"
+                readOnly={readOnly}
             >
                 <TextField
                     id="story_field_input_00"

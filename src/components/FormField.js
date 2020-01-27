@@ -79,10 +79,12 @@ FormField.propTypes = {
     ]),
     label: PropTypes.node,
     labelFor: PropTypes.string.isRequired,
+    readOnly: PropTypes.bool,
     subtext: PropTypes.node
 };
 
 FormField.defaultProps = {
     changed: false,
-    error: false
+    error: false,
+    readOnly: false
 };
