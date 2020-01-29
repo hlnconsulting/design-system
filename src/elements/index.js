@@ -2,6 +2,10 @@ import { Button } from './Button';
 import { DataTableContainer } from './DataTableContainer';
 import { DataTableControlDeck } from './DataTableControlDeck';
 import { Input } from './Input';
+import { CheckboxField } from './CheckboxField';
+import { RadioField } from './RadioField';
+import { RadioGroup } from './RadioGroup';
+import { SwitchField } from './SwitchField';
 import { MaterialIcon } from './MaterialIcon';
 import { SelectField } from './SelectField';
 import { TextField } from './TextField';
@@ -43,5 +47,9 @@ export {
     Paragraph,
     Strong,
     Link,
-    Text
+    Text,
+    CheckboxField,
+    RadioField,
+    RadioGroup,
+    SwitchField
 };
