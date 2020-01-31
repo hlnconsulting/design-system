@@ -17,43 +17,62 @@ const StyledSwitchField = styled(({ size, ...rest }) => <button {...rest} />)`
     outline: none;
     height: ${(props) => props.size + 2}px;
     width: 100%;
-    span {
-        font-family: ${(props) => props.theme.typography.fonts.ui};
-        font-weight: 400;
+`;
+
+const SwitchFieldLabel = styled(({ alt, ...rest }) => <span {...rest} />)`
+    flex-grow: 2;
+    font-family: ${(props) => props.theme.typography.fonts.ui};
+    font-weight: 400;
+    text-align: ${(props) => (props.alt ? `right` : `left`)};
+`;
+
+const SwitchFieldActualContainer = styled(({ mutliLabel, ...rest }) => (
+    <div {...rest} />
+))`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-grow: 1;
+    justify-content: ${(props) => (props.mutliLabel ? `center` : `flex-end`)};
+`;
+
+const SwitchFieldActual = styled(({ checked, size, ...rest }) => (
+    <div {...rest} />
+))`
+    cursor: pointer;
+    position: relative;
+    width: ${(props) => props.size * 3.05}px;
+    ::before,
+    ::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
     }
-    div {
-        cursor: pointer;
-        ::before,
-        ::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%) ;
-        }
-        ::before {
-            background: ${(props) =>
-                props['aria-pressed']
-                    ? props.theme.colors.brand.P5
-                    : props.theme.colors.background.tint};
-            border: 1px solid ${(props) => props.theme.colors.border.default};
-            border-radius: 10px;
-            box-shadow: ${(props) => props.theme.elevation(0)};
-            height: ${(props) => props.size}px;
-            width: ${(props) => props.size * 3}px;
-            transition: background 0.2s ease-in-out;
-            right: 0;
-        }
-        ::after {
-            background: ${(props) => props.theme.colors.fixed.white};
-            border-radius: 100%;
-            box-shadow: ${(props) => props.theme.elevation(1)};
-            height: ${(props) => props.size - 4}px;
-            width: ${(props) => props.size - 4}px;
-            margin: 0 0.133rem;
-            transition: right 0.1825s ease-in-out;
-            right: ${(props) => props.size * 2}px;
-        }
-        ${(props) => props['aria-pressed'] && `::after { right: 2px; }`}
+    ::before {
+        background: ${(props) =>
+            props.checked
+                ? props.theme.colors.brand.P5
+                : props.theme.colors.background.tint};
+        border: 1px solid ${(props) => props.theme.colors.border.default};
+        border-radius: 10px;
+        box-shadow: ${(props) => props.theme.elevation(0)};
+        height: ${(props) => props.size}px;
+        width: ${(props) => props.size * 3}px;
+        transition: background 0.2s ease-in-out;
+        right: 0;
+    }
+    ::after {
+        background: ${(props) => props.theme.colors.fixed.white};
+        border-radius: 100%;
+        box-shadow: ${(props) => props.theme.elevation(1)};
+        height: ${(props) => props.size - 4}px;
+        width: ${(props) => props.size - 4}px;
+        margin: 0 0.133rem;
+        transition: right 0.1825s ease-in-out;
+        right: ${(props) => props.size * 2}px;
+    }
+    ${(props) => props['aria-pressed'] && `::after { right: 2px; }`}
 `;
 
 const SwitchField = ({
@@ -62,6 +81,7 @@ const SwitchField = ({
     id,
     name,
     onChange,
+    size,
     value,
     ...props
 }) => {
@@ -70,6 +90,7 @@ const SwitchField = ({
             aria-pressed={checked}
             id={id}
             name={name}
+            size={size}
             {...{
                 [isNative() ? `onPress` : `onClick`]: (e) =>
                     onChange({
@@ -82,8 +103,21 @@ const SwitchField = ({
             }}
             {...props}
         >
-            <span>{label}</span>
-            <div aria-hidden="true" />
+            <SwitchFieldLabel>
+                {typeof label === 'object' && label.length === 2
+                    ? label[0]
+                    : label}
+            </SwitchFieldLabel>
+            <SwitchFieldActualContainer mutliLabel={typeof label !== 'string'}>
+                <SwitchFieldActual
+                    aria-hidden="true"
+                    checked={checked}
+                    size={size}
+                />
+            </SwitchFieldActualContainer>
+            {typeof label === 'object' && label.length === 2 && (
+                <SwitchFieldLabel alt>{label[1]}</SwitchFieldLabel>
+            )}
         </StyledSwitchField>
     );
 };
@@ -93,7 +127,7 @@ SwitchField.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     checked: PropTypes.bool.isRequired,
-    label: PropTypes.string.isRequired,
+    label: PropTypes.oneOfType([PropTypes.string, PropTypes.array]).isRequired,
     value: PropTypes.string,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
