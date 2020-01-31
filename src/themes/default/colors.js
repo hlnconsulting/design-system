@@ -56,6 +56,11 @@ const fuzzyColors = {
         black: colors.monochrome.MC10,
         white: colors.monochrome.MC0
     },
+    icons: {
+        default: colors.monochrome.MC5,
+        disabled: colors.neutral.N6A,
+        selected: colors.brand.P5
+    },
     intent: {
         brand: colors.brand.P5,
         success: `#5cb85c`,
