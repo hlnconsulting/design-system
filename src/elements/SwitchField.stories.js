@@ -33,6 +33,13 @@ export const field = () => (
             label={`Disabled Switch`}
             onChange={action(`onChange`)}
         />
+        <SwitchField
+            checked
+            id="sb_inputs_switch_checked"
+            name="sb_inputs_switch_checked"
+            label={[`Label 0`, `Label 1`]}
+            onChange={action(`onChange`)}
+        />
     </>
 );
 
