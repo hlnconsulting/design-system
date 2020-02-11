@@ -61,7 +61,7 @@
         "react-select": "^3.0.4",
         "react-table": "^7.0.0-rc.9",
         "react-transition-group": "^4.3.0",
-        "styled-components": "5.0.0"
+        "styled-components": "^5.0.0"
     },
     "scripts": {
         "clean": "rimraf ./dist",
@@ -70,5 +70,5 @@
         "build": "build-storybook -c .storybook -o public",
         "test": "jest"
     },
-    "version": "0.6.24"
+    "version": "0.6.25"
 }
