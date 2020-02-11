@@ -1,6 +1,8 @@
 import { Button } from './Button';
+import { ButtonRow } from './ButtonRow';
 import { DataTableContainer } from './DataTableContainer';
 import { DataTableControlDeck } from './DataTableControlDeck';
+import { DataTableHeader } from './DataTableHeader';
 import { Input } from './Input';
 import { CheckboxField } from './CheckboxField';
 import { RadioField } from './RadioField';
@@ -27,29 +29,31 @@ import { Text } from './Typography/Text';
 
 export {
     Button,
+    ButtonRow,
+    CheckboxField,
     DataTableContainer,
     DataTableControlDeck,
+    DataTableHeader,
+    DialogBody,
+    DialogFooter,
+    DialogHeader,
+    Heading,
     Input,
+    Link,
     MaterialIcon,
+    Paragraph,
+    RadioField,
+    RadioGroup,
     SelectField,
-    TextField,
+    Spinner,
+    Strong,
+    SwitchField,
     TableBody,
     TableCell,
     TableEmptyState,
     TableHeader,
     TableRow,
-    DialogHeader,
-    DialogFooter,
-    DialogBody,
-    Spinner,
-    Undraw,
-    Heading,
-    Paragraph,
-    Strong,
-    Link,
     Text,
-    CheckboxField,
-    RadioField,
-    RadioGroup,
-    SwitchField
+    TextField,
+    Undraw
 };
