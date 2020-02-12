@@ -37,17 +37,31 @@ const FieldSubtext = styled.span`
     font-weight: 400;
 `;
 
+const FormFieldFullBasis = styled(({ ...rest }) => <div {...rest} />)`
+    display: flex;
+    flex-basis: 75%;
+`;
+
+const FormFieldFlexBlock = styled(({ basis, width, ...rest }) => (
+    <div {...rest} />
+))`
+    flex-basis: ${(props) => props.basis || 100}%;
+    max-width: ${(props) => `${props.width}rem` || `auto`};
+`;
+
 const RenderFormElementWithProps = (children, props) =>
     React.Children.map(children, (child) =>
         React.cloneElement(child, { ...props })
     );
 
 export const FormField = ({
+    basis,
     children,
     error,
     label,
     labelFor,
     subtext,
+    width,
     ...props
 }) => {
     const a11yProps = {
@@ -64,12 +78,20 @@ export const FormField = ({
                 )}
                 {subtext && <FieldSubtext>{subtext}</FieldSubtext>}
             </FieldLabelWrapper>
-            {RenderFormElementWithProps(children, { error: error, ...props })}
+            <FormFieldFullBasis>
+                <FormFieldFlexBlock basis={basis} width={width}>
+                    {RenderFormElementWithProps(children, {
+                        error: error,
+                        ...props
+                    })}
+                </FormFieldFlexBlock>
+            </FormFieldFullBasis>
         </FormFieldWrapper>
     );
 };
 
 FormField.propTypes = {
+    basis: PropTypes.number,
     changed: PropTypes.bool,
     children: PropTypes.node.isRequired,
     error: PropTypes.oneOfType([
@@ -80,7 +102,8 @@ FormField.propTypes = {
     label: PropTypes.node,
     labelFor: PropTypes.string.isRequired,
     readOnly: PropTypes.bool,
-    subtext: PropTypes.node
+    subtext: PropTypes.node,
+    width: PropTypes.number
 };
 
 FormField.defaultProps = {

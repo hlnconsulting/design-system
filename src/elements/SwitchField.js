@@ -36,10 +36,10 @@ const SwitchFieldActualContainer = styled(({ mutliLabel, ...rest }) => (
     justify-content: ${(props) => (props.mutliLabel ? `center` : `flex-end`)};
 `;
 
-const SwitchFieldActual = styled(({ checked, size, ...rest }) => (
-    <div {...rest} />
-))`
-    cursor: pointer;
+const SwitchFieldActual = styled(
+    ({ checked, disabled, radioMode, size, ...rest }) => <div {...rest} />
+)`
+    cursor: ${(props) => (props.disabled ? `not-allowed` : `pointer`)};
     position: relative;
     width: ${(props) => props.size * 3.05}px;
     ::before,
@@ -51,8 +51,10 @@ const SwitchFieldActual = styled(({ checked, size, ...rest }) => (
     }
     ::before {
         background: ${(props) =>
-            props.checked
+            props.checked || props.radioMode
                 ? props.theme.colors.brand.P5
+                : props.disabled
+                ? props.theme.colors.brand.P1
                 : props.theme.colors.background.tint};
         border: 1px solid ${(props) => props.theme.colors.border.default};
         border-radius: 10px;
@@ -72,22 +74,24 @@ const SwitchFieldActual = styled(({ checked, size, ...rest }) => (
         transition: right 0.1825s ease-in-out;
         right: ${(props) => props.size * 2}px;
     }
-    ${(props) => props['aria-pressed'] && `::after { right: 2px; }`}
+    ${(props) => props.checked && `::after { right: 2px; }`}
 `;
 
 const SwitchField = ({
     checked,
+    disabled,
     label,
     id,
     name,
     onChange,
+    radioMode,
     size,
-    value,
     ...props
 }) => {
     return (
         <StyledSwitchField
             aria-pressed={checked}
+            disabled={disabled}
             id={id}
             name={name}
             size={size}
@@ -97,7 +101,7 @@ const SwitchField = ({
                         target: {
                             id: id,
                             name: name,
-                            value: value
+                            value: !!checked
                         }
                     })
             }}
@@ -112,6 +116,8 @@ const SwitchField = ({
                 <SwitchFieldActual
                     aria-hidden="true"
                     checked={checked}
+                    disabled={disabled}
+                    radioMode={radioMode}
                     size={size}
                 />
             </SwitchFieldActualContainer>
@@ -128,10 +134,10 @@ SwitchField.propTypes = {
     name: PropTypes.string.isRequired,
     checked: PropTypes.bool.isRequired,
     label: PropTypes.oneOfType([PropTypes.string, PropTypes.array]).isRequired,
-    value: PropTypes.string,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
+    radioMode: PropTypes.bool,
     size: PropTypes.number
 };
 
@@ -141,6 +147,7 @@ SwitchField.defaultProps = {
     onBlur: () => null,
     onChange: () => null,
     onFocus: () => null,
+    radioMode: false,
     size: 20
 };
 

@@ -4,6 +4,7 @@ import { withKnobs, boolean } from '@storybook/addon-knobs';
 
 import { FormField } from './FormField';
 import { SelectField } from './../elements/SelectField';
+import { SwitchField } from './../elements/SwitchField';
 import { TextField } from './../elements/TextField';
 
 export default {
@@ -42,6 +43,34 @@ export const field = () => {
                 <SelectField
                     id="story_field_input_01"
                     name="story_field_input_01"
+                />
+            </FormField>
+            <FormField
+                error={errorState}
+                label="<SwitchField width={15} />"
+                labelFor="story_field_input_02"
+                readOnly={readOnly}
+                width={15}
+            >
+                <SwitchField
+                    id="story_field_input_02"
+                    label={[`Thing 1`, `Thing 2`]}
+                    name="story_field_input_02"
+                    radioMode
+                />
+            </FormField>
+            <FormField
+                basis={42}
+                error={errorState}
+                label="<SwitchField basis={42} />"
+                labelFor="story_field_input_03"
+                readOnly={readOnly}
+            >
+                <SwitchField
+                    id="story_field_input_03"
+                    label={[`Another Thing 1`, `Another Thing 2`]}
+                    name="story_field_input_03"
+                    radioMode
                 />
             </FormField>
         </>

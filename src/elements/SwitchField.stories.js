@@ -34,11 +34,12 @@ export const field = () => (
             onChange={action(`onChange`)}
         />
         <SwitchField
-            checked
+            checked={boolean(`Toggled?`, false)}
             id="sb_inputs_switch_checked"
             name="sb_inputs_switch_checked"
             label={[`Label 0`, `Label 1`]}
             onChange={action(`onChange`)}
+            radioMode
         />
     </>
 );
