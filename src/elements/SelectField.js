@@ -60,7 +60,7 @@ export const SelectField = ({
                             1.066}rem`,
                         fontWeight: 400,
                         lineHeight: `${SelectFieldInputOptions.sizeRatio[size] *
-                            1.1}rem`
+                            1.33}rem`
                     }),
                     control: (defaultStyles) => ({
                         ...defaultStyles,
