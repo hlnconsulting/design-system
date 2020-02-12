@@ -36,10 +36,10 @@ const SwitchFieldActualContainer = styled(({ mutliLabel, ...rest }) => (
     justify-content: ${(props) => (props.mutliLabel ? `center` : `flex-end`)};
 `;
 
-const SwitchFieldActual = styled(({ checked, radioMode, size, ...rest }) => (
-    <div {...rest} />
-))`
-    cursor: pointer;
+const SwitchFieldActual = styled(
+    ({ checked, disabled, radioMode, size, ...rest }) => <div {...rest} />
+)`
+    cursor: ${(props) => (props.disabled ? `not-allowed` : `pointer`)};
     position: relative;
     width: ${(props) => props.size * 3.05}px;
     ::before,
@@ -53,6 +53,8 @@ const SwitchFieldActual = styled(({ checked, radioMode, size, ...rest }) => (
         background: ${(props) =>
             props.checked || props.radioMode
                 ? props.theme.colors.brand.P5
+                : props.disabled
+                ? props.theme.colors.brand.P1
                 : props.theme.colors.background.tint};
         border: 1px solid ${(props) => props.theme.colors.border.default};
         border-radius: 10px;
@@ -77,6 +79,7 @@ const SwitchFieldActual = styled(({ checked, radioMode, size, ...rest }) => (
 
 const SwitchField = ({
     checked,
+    disabled,
     label,
     id,
     name,
@@ -88,6 +91,7 @@ const SwitchField = ({
     return (
         <StyledSwitchField
             aria-pressed={checked}
+            disabled={disabled}
             id={id}
             name={name}
             size={size}
@@ -112,6 +116,7 @@ const SwitchField = ({
                 <SwitchFieldActual
                     aria-hidden="true"
                     checked={checked}
+                    disabled={disabled}
                     radioMode={radioMode}
                     size={size}
                 />
