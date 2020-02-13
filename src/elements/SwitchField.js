@@ -19,11 +19,19 @@ const StyledSwitchField = styled(({ size, ...rest }) => <button {...rest} />)`
     width: 100%;
 `;
 
-const SwitchFieldLabel = styled(({ alt, ...rest }) => <span {...rest} />)`
+const SwitchFieldLabel = styled(({ active, alt, ...rest }) => (
+    <span {...rest} />
+))`
+    color: ${(props) =>
+        props.active
+            ? props.theme.colors.brand.P9
+            : props.theme.colors.text.default};
     flex-grow: 2;
     font-family: ${(props) => props.theme.typography.fonts.ui};
     font-weight: 400;
     text-align: ${(props) => (props.alt ? `right` : `left`)};
+    text-shadow: ${(props) =>
+        props.active ? `1px 0 0 ${props.theme.colors.brand.P9}` : `none`};
 `;
 
 const SwitchFieldActualContainer = styled(({ mutliLabel, ...rest }) => (
@@ -107,7 +115,7 @@ const SwitchField = ({
             }}
             {...props}
         >
-            <SwitchFieldLabel>
+            <SwitchFieldLabel active={typeof label === 'object' && !checked}>
                 {typeof label === 'object' && label.length === 2
                     ? label[0]
                     : label}
@@ -122,7 +130,12 @@ const SwitchField = ({
                 />
             </SwitchFieldActualContainer>
             {typeof label === 'object' && label.length === 2 && (
-                <SwitchFieldLabel alt>{label[1]}</SwitchFieldLabel>
+                <SwitchFieldLabel
+                    active={typeof label === 'object' && checked}
+                    alt
+                >
+                    {label[1]}
+                </SwitchFieldLabel>
             )}
         </StyledSwitchField>
     );
