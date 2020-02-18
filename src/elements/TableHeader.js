@@ -9,6 +9,8 @@ const StyledThead = styled(({ ...rest }) => <thead {...rest} />)`
         td {
             border-top: 1px solid
                 ${(props) => props.theme.colors.background.default};
+            border-bottom: 2px solid
+                ${(props) => props.theme.colors.background.tintAlt};
             :first-child {
                 border-top-left-radius: 3px;
             }

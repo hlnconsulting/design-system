@@ -2,6 +2,7 @@
 *.lock
 /cypress/screenshots
 /cypress/videos
+/public
 
 # Created by https://www.gitignore.io/api/node,linux,macos,windows,intellij,webstorm,reactnative
 # Edit at https://www.gitignore.io/?templates=node,linux,macos,windows,intellij,webstorm,reactnative
@@ -500,3 +501,7 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/node,linux,macos,windows,intellij,webstorm,reactnative
+.idea/codeStyles/codeStyleConfig.xml
+.idea/inspectionProfiles/Project_Default.xml
+.idea/misc.xml
+.idea

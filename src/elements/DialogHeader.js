@@ -11,7 +11,7 @@ const HeaderContainer = styled(({ borderless, ...rest }) => <div {...rest} />)`
     ${(props) =>
         !props.borderless &&
         `border-bottom: 1px solid ${props.theme.colors.border.default}`};
-    ${borderRadius(`top`, `3px`)};
+    ${borderRadius(`top`, (props) => props.theme.constants.corner)};
     display: flex;
     flex-direction: row;
     align-items: center;

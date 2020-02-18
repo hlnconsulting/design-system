@@ -9,9 +9,15 @@ const DialogOptions = {
     size: ['sm', 'md', 'lg']
 };
 
-const DialogCard = styled(({ size, ...rest }) => <div {...rest} />)`
+const DialogSizeMap = {
+    sm: 36,
+    md: 42,
+    lg: 64
+};
+
+const DialogCard = styled(({ rounder, size, ...rest }) => <div {...rest} />)`
     background-color: ${(props) => props.theme.colors.background.default};
-    border-radius: 3px;
+    border-radius: ${(props) => props.theme.constants.corner};
     box-shadow: 2px 0 0 ${(props) => props.theme.colors.neutral.N1A},
         0 0.33rem 2rem ${(props) => props.theme.colors.neutral.N6A};
     display: flex;
@@ -19,14 +25,7 @@ const DialogCard = styled(({ size, ...rest }) => <div {...rest} />)`
     margin: 2.25rem;
     max-height: calc(100% - 64px);
     min-width: 20rem;
-    max-width: ${(props) =>
-        props.size === 'sm'
-            ? 36
-            : props.size === 'md'
-            ? 42
-            : props.size === 'lg'
-            ? 64
-            : 84}rem;
+    width: ${(props) => DialogSizeMap[props.size] || 84}rem;
 `;
 
 export const Dialog = ({ children, close, visible, ...props }) => {
@@ -37,7 +36,7 @@ export const Dialog = ({ children, close, visible, ...props }) => {
 
     return (
         <Modal {...modalProps}>
-            <DialogCard>{children}</DialogCard>
+            <DialogCard {...props}>{children}</DialogCard>
         </Modal>
     );
 };

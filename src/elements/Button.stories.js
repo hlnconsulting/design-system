@@ -1,18 +1,56 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
+import { withKnobs, boolean } from '@storybook/addon-knobs';
 
 import { Button } from './Button';
 
 export default {
     title: 'Elements|Button',
-    component: Button
+    component: Button,
+    decorators: [withKnobs]
 };
 
 export const buttons = () => (
     <>
-        <Button appearance="primary">Primary</Button>
-        <Button appearance="secondary">Secondary</Button>
-        <Button appearance="tertiary">Tertiary</Button>
+        <Button
+            appearance="primary"
+            disabled={boolean(`Disabled`, false)}
+            loading={boolean(`Loading`, false)}
+        >
+            Primary
+        </Button>
+        <Button
+            appearance="secondary"
+            disabled={boolean(`Disabled`, false)}
+            loading={boolean(`Loading`, false)}
+        >
+            Secondary
+        </Button>
+        <Button
+            appearance="tertiary"
+            disabled={boolean(`Disabled`, false)}
+            loading={boolean(`Loading`, false)}
+        >
+            Tertiary
+        </Button>
+        <br />
+        <br />
+        <Button
+            appearance="primary"
+            disabled={boolean(`Disabled`, false)}
+            icon={`healing`}
+            loading={boolean(`Loading`, false)}
+        >
+            Tertiary with Icon
+        </Button>
+        <Button
+            appearance="tertiary"
+            disabled={boolean(`Disabled`, false)}
+            icon={`healing`}
+            loading={boolean(`Loading`, false)}
+        >
+            Tertiary with Icon
+        </Button>
     </>
 );
 
@@ -22,13 +60,28 @@ buttons.story = {
 
 export const textButtons = () => (
     <>
-        <Button appearance="primary" text>
+        <Button
+            appearance="primary"
+            disabled={boolean(`Disabled`, false)}
+            loading={boolean(`Loading`, false)}
+            text
+        >
             Primary
         </Button>
-        <Button appearance="secondary" text>
+        <Button
+            appearance="secondary"
+            disabled={boolean(`Disabled`, false)}
+            loading={boolean(`Loading`, false)}
+            text
+        >
             Secondary
         </Button>
-        <Button appearance="tertiary" text>
+        <Button
+            appearance="tertiary"
+            disabled={boolean(`Disabled`, false)}
+            loading={boolean(`Loading`, false)}
+            text
+        >
             Tertiary
         </Button>
     </>

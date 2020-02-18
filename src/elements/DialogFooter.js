@@ -11,7 +11,7 @@ const FooterContainer = styled(({ borderless, stacked, ...rest }) => (
     ${(props) =>
         !props.borderless &&
         `border-top: 1px solid ${props.theme.colors.border.default}`};
-    ${borderRadius(`bottom`, `3px`)};
+    ${borderRadius(`bottom`, (props) => props.theme.constants.corner)};
     display: flex;
     flex-direction: ${(props) => (props.stacked ? `column` : `row`)};
     align-items: ${(props) => (props.stacked ? `flex-end` : `center`)};

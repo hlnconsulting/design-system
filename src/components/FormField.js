@@ -12,13 +12,19 @@ const FormFieldWrapper = styled.div`
 `;
 
 const FieldLabelWrapper = styled.label`
+    display: flex;
+    flex-direction: column;
     flex-basis: 25%;
     margin: 0.667rem 1.667rem 0.667rem 0;
     text-align: right;
 `;
 
-const FieldLabel = styled.span`
-    color: ${(props) => props.theme.colors.text.default};
+// eslint-disable-next-line handle-callback-err
+const FieldLabel = styled(({ error, ...rest }) => <span {...rest} />)`
+    color: ${(props) =>
+        props.error
+            ? props.theme.colors.intent.danger
+            : props.theme.colors.text.default};
     font-family: ${(props) => props.theme.typography.fonts.ui};
     font-size: 1.066rem;
     font-weight: 500;
@@ -27,11 +33,37 @@ const FieldLabel = styled.span`
 const FieldSubtext = styled.span`
     color: ${(props) => props.theme.colors.text.muted};
     font-family: ${(props) => props.theme.typography.fonts.ui};
-    font-size: 0.966rem;
+    font-size: 0.8rem;
     font-weight: 400;
 `;
 
-export const FormField = ({ children, label, labelFor, subtext, ...props }) => {
+const FormFieldFullBasis = styled(({ ...rest }) => <div {...rest} />)`
+    display: flex;
+    flex-basis: 75%;
+`;
+
+const FormFieldFlexBlock = styled(({ basis, width, ...rest }) => (
+    <div {...rest} />
+))`
+    flex-basis: ${(props) => props.basis || 100}%;
+    max-width: ${(props) => `${props.width}rem` || `auto`};
+`;
+
+const RenderFormElementWithProps = (children, props) =>
+    React.Children.map(children, (child) =>
+        React.cloneElement(child, { ...props })
+    );
+
+export const FormField = ({
+    basis,
+    children,
+    error,
+    label,
+    labelFor,
+    subtext,
+    width,
+    ...props
+}) => {
     const a11yProps = {
         htmlFor: labelFor
     };
@@ -39,22 +71,43 @@ export const FormField = ({ children, label, labelFor, subtext, ...props }) => {
     return (
         <FormFieldWrapper {...props}>
             <FieldLabelWrapper>
-                {label && <FieldLabel {...a11yProps}>{label}</FieldLabel>}
+                {label && (
+                    <FieldLabel error={!!error} {...a11yProps}>
+                        {label}
+                    </FieldLabel>
+                )}
                 {subtext && <FieldSubtext>{subtext}</FieldSubtext>}
             </FieldLabelWrapper>
-            {children}
+            <FormFieldFullBasis>
+                <FormFieldFlexBlock basis={basis} width={width}>
+                    {RenderFormElementWithProps(children, {
+                        error: error,
+                        ...props
+                    })}
+                </FormFieldFlexBlock>
+            </FormFieldFullBasis>
         </FormFieldWrapper>
     );
 };
 
 FormField.propTypes = {
+    basis: PropTypes.number,
     changed: PropTypes.bool,
     children: PropTypes.node.isRequired,
+    error: PropTypes.oneOfType([
+        PropTypes.bool,
+        PropTypes.object,
+        PropTypes.string
+    ]),
     label: PropTypes.node,
     labelFor: PropTypes.string.isRequired,
-    subtext: PropTypes.node
+    readOnly: PropTypes.bool,
+    subtext: PropTypes.node,
+    width: PropTypes.number
 };
 
 FormField.defaultProps = {
-    changed: false
+    changed: false,
+    error: false,
+    readOnly: false
 };

@@ -4,7 +4,7 @@ import React from 'react';
 import { DataTableFilter } from './DataTableFilter';
 
 export default {
-    title: 'Components|Tables/Data Table Utilities',
+    title: 'Components|Tables/Data Table Utilities/Filter',
     component: DataTableFilter
 };
 
@@ -18,5 +18,5 @@ export const dataTableFilter = () => {
 };
 
 dataTableFilter.story = {
-    name: 'Data Table Filter'
+    name: 'Overview'
 };

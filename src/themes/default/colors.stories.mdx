@@ -1,5 +1,169 @@
 import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
 
+import colors from './colors';
+
 <Meta title="Theme|Colors" />
 
 # Colors
+
+---
+
+<ColorPalette>
+    <ColorItem
+        title="theme.colors.brand.P5"
+        subtitle="Primary"
+        colors={[colors.brand.P5]}
+    />
+    <ColorItem
+        title="theme.colors.brand.S5"
+        subtitle="Secondary"
+        colors={[colors.brand.S5]}
+    />
+    <ColorItem
+        title="theme.colors.intent.success"
+        subtitle="Successful Intent"
+        colors={[colors.intent.success]}
+    />
+    <ColorItem
+        title="theme.colors.intent.info"
+        subtitle="Informational Intent"
+        colors={[colors.intent.info]}
+    />
+    <ColorItem
+        title="theme.colors.intent.warning"
+        subtitle="Warning Intent"
+        colors={[colors.intent.warning]}
+    />
+    <ColorItem
+        title="theme.colors.intent.danger"
+        subtitle="Danger Intent"
+        colors={[colors.intent.danger]}
+    />
+    <ColorItem
+        title="theme.colors.intent.muted"
+        subtitle="Muted Intent"
+        colors={[colors.intent.muted]}
+    />
+    <ColorItem
+        title="theme.colors.fixed.white"
+        subtitle="Fixed White"
+        colors={[colors.fixed.white]}
+    />
+    <ColorItem
+        title="theme.colors.fixed.black"
+        subtitle="Fixed Black"
+        colors={[colors.fixed.black]}
+    />
+</ColorPalette>
+
+## Text Colors
+
+---
+
+<ColorPalette>
+    <ColorItem
+        title="theme.colors.text.default"
+        subtitle="Default"
+        colors={[colors.text.default]}
+    />
+    <ColorItem
+        title="theme.colors.text.dark"
+        subtitle="Darkened"
+        colors={[colors.text.dark]}
+    />
+    <ColorItem
+        title="theme.colors.text.muted"
+        subtitle="Muted"
+        colors={[colors.text.muted]}
+    />
+</ColorPalette>
+
+## Background Colors
+
+---
+
+<ColorPalette>
+    <ColorItem
+        title="theme.colors.background.default"
+        subtitle="Default"
+        colors={[colors.background.default]}
+    />
+    <ColorItem
+        title="theme.colors.background.tint"
+        subtitle="Tint"
+        colors={[colors.background.tint]}
+    />
+    <ColorItem
+        title="theme.colors.background.tintAlt"
+        subtitle="Tint (alternate)"
+        colors={[colors.background.tintAlt]}
+    />
+    <ColorItem
+        title="theme.colors.background.field"
+        subtitle="Field"
+        colors={[colors.background.field]}
+    />
+</ColorPalette>
+
+## Color Scales
+
+---
+
+<ColorPalette>
+    <ColorItem
+        title="theme.colors.brand.P{n}"
+        subtitle="Primary"
+        colors={[
+            colors.brand.P1,
+            colors.brand.P2,
+            colors.brand.P3,
+            colors.brand.P4,
+            colors.brand.P5,
+            colors.brand.P6,
+            colors.brand.P7,
+            colors.brand.P9
+        ]}
+    />
+    <ColorItem
+        title="theme.colors.brand.S{n}"
+        subtitle="Secondary"
+        colors={[
+            colors.brand.S1,
+            colors.brand.S2,
+            colors.brand.S3,
+            colors.brand.S4,
+            colors.brand.S5,
+            colors.brand.S6,
+            colors.brand.S7,
+            colors.brand.S9
+        ]}
+    />
+    <ColorItem
+        title="theme.colors.monochrome.MC{n}"
+        subtitle="Monochrome"
+        colors={[
+            colors.monochrome.MC0,
+            colors.monochrome.MC05,
+            colors.monochrome.MC1,
+            colors.monochrome.MC2,
+            colors.monochrome.MC3,
+            colors.monochrome.MC5,
+            colors.monochrome.MC7,
+            colors.monochrome.MC9,
+            colors.monochrome.MC10
+        ]}
+    />
+    <ColorItem
+        title="theme.colors.neutral.N{n}A"
+        subtitle="Neutrals, for Box Shadows"
+        colors={[
+            colors.neutral.N0A,
+            colors.neutral.N1A,
+            colors.neutral.N2A,
+            colors.neutral.N3A,
+            colors.neutral.N4A,
+            colors.neutral.N5A,
+            colors.neutral.N6A
+        ]}
+    />
+</ColorPalette>
