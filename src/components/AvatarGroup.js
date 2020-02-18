@@ -41,7 +41,11 @@ const AvatarUnit = styled(
     width: ${(props) => props.size}px;
 `;
 
-const AvatarGroup = ({ maxLength, users, ...props }) => (
+/**
+ * Use `AvatarGroup` to display a series of user avatar images as a group.
+ */
+
+export const AvatarGroup = ({ maxLength, users, ...props }) => (
     <AvatarGroupRow
         length={users.length}
         maxLength={maxLength}
@@ -73,13 +77,17 @@ const AvatarGroup = ({ maxLength, users, ...props }) => (
 );
 
 AvatarGroup.propTypes = {
+    /** Length of avatars to truncate at, if necessary. */
     maxLength: PropTypes.number,
     solid: PropTypes.bool,
     size: PropTypes.number.isRequired,
+    /** Enable a border around each individual avatar. */
     stroke: PropTypes.bool,
     strokeColor: PropTypes.string,
     strokeWidth: PropTypes.number,
+    /** Shape to render individual avatars as. */
     type: PropTypes.oneOf(['Circle', 'Square']),
+    /** List of users to map into the group. */
     users: PropTypes.array.isRequired
 };
 
@@ -91,5 +99,3 @@ AvatarGroup.defaultProps = {
     type: 'Circle',
     users: []
 };
-
-export { AvatarGroup };

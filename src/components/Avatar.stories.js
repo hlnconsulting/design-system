@@ -10,9 +10,12 @@ import {
 import { Avatar } from './Avatar';
 
 export default {
-    title: 'Components|Avatar',
     component: Avatar,
-    decorators: [withKnobs]
+    decorators: [withKnobs],
+    title: 'Components|Avatar',
+    parameters: {
+        componentSubtitle: `A user's profile image`
+    }
 };
 
 export const avatar = () => (
@@ -47,7 +50,7 @@ avatar.story = {
 export const avatarFallback = () => (
     <Avatar
         name={text(`User's Name`, `Data, Lt. Cdr.`)}
-        src={text(`Source (URI)`, ``)}
+        src=""
         size={number(`Avatar Size (px)`, 128, {
             range: true,
             min: 32,

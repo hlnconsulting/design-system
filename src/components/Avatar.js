@@ -71,7 +71,11 @@ const AvatarFallback = styled(({ hash, name, size, type, ...rest }) => (
     }
 `;
 
-const Avatar = ({ hash, name, src, ...props }) => {
+/**
+ * Use `Avatar` to display an individual user's profile image.
+ */
+
+export const Avatar = ({ hash, name, src, ...props }) => {
     // Avatar without source, possibly without name
     if (typeof hash !== 'undefined' && !src.length) {
         let parsedName = generateAvatarInitials(
@@ -95,20 +99,24 @@ const Avatar = ({ hash, name, src, ...props }) => {
     return <AvatarImage src={src} alt={name} {...props} />;
 };
 
+Avatar.propTypes = {
+    /** A user's ID, hash of their name, or some other unique identifier. */
+    hash: PropTypes.string.isRequired,
+    /** For the fallback component, render in a more bold color scheme. */
+    solid: PropTypes.bool,
+    src: PropTypes.string.isRequired,
+    /** Ideally, the name or display name of the user for accessibility. */
+    name: PropTypes.string.isRequired,
+    /** Size (px) to render Avatar as. */
+    size: PropTypes.number,
+    /** Shape to render Avatar as. */
+    type: PropTypes.oneOf(['Circle', 'Square'])
+};
+
 Avatar.defaultProps = {
     size: 128,
     solid: false,
     type: 'Circle'
 };
 
-Avatar.propTypes = {
-    hash: PropTypes.string.isRequired, // UUID or something to act as a name
-    solid: PropTypes.bool,
-    src: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    size: PropTypes.number,
-    type: PropTypes.oneOf(['Circle', 'Square']),
-    label: PropTypes.string
-};
-
-export { Avatar, AvatarImage, AvatarFallback };
+export { AvatarImage, AvatarFallback };

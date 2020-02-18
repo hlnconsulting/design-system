@@ -1,12 +1,17 @@
 import React from 'react';
 import { withKnobs, boolean, number, radios } from '@storybook/addon-knobs';
 
+import { Avatar } from './Avatar';
 import { AvatarGroup } from './AvatarGroup';
 
 export default {
-    title: 'Components|Avatar Group',
     component: AvatarGroup,
-    decorators: [withKnobs]
+    subcomponents: { Avatar },
+    decorators: [withKnobs],
+    title: 'Components|Avatar Group',
+    parameters: {
+        componentSubtitle: 'Render a group of user avatars'
+    }
 };
 
 export const avatarGroup = () => (
