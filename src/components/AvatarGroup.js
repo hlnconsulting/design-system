@@ -7,8 +7,10 @@ import { Avatar, AvatarFallback } from './Avatar';
 const AvatarGroupRow = styled(({ length, maxLength, size, ...rest }) => (
     <ul {...rest} />
 ))`
-    ${(props) => props.theme.flexbox.flex};
-    ${(props) => props.theme.flexbox.row};
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
     margin: 0;
     padding: 0;
     height: ${(props) => props.size}px;
@@ -43,7 +45,7 @@ const AvatarGroup = ({ maxLength, users, ...props }) => (
     <AvatarGroupRow
         length={users.length}
         maxLength={maxLength}
-        size={this.props.size}
+        size={props.size}
     >
         {users.length
             ? users.splice(0, maxLength).map((u, n) => (
