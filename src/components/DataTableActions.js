@@ -61,6 +61,26 @@ export const DataTableActions = ({ actions, ...props }) => {
 };
 
 DataTableActions.propTypes = {
+    /**
+     * An array of action objects to be mapped as icon buttons.
+     *
+     * An action object is currently defined as an `action` to be called when
+     * an onPress/onClick event is triggered, a `label` for accessibility
+     * purposes, and finally the Google Material Design `icon` to be rendered.
+     *
+     * For example:
+     *
+     * ```es6
+     * {
+     *   action: () => null,
+     *   label: `Create`,
+     *   icon: `post_add`
+     * }
+     * ```
+     *
+     * For available icon options, please refer to the webfont documentation
+     * for [Material Design Icons](https://material.io/resources/icons/?style=baseline).
+     */
     actions: PropTypes.array
 };
 

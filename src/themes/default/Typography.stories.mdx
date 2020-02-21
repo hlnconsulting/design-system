@@ -4,6 +4,20 @@ import { Meta, Typeset } from '@storybook/addon-docs/blocks';
 
 # Typography
 
-**Font:** Open Sans
+Accessible from the `theme` prop, there are three font options available to you by default: `display`, useful for headings and other standalone content; `ui`, the "default" typeset for text, content, and most UI components; `mono`, when a monospace font is necessary.
 
-**Weights:** 400(regular), 600(bold)
+For example, you can utilize `${(props) => props.theme.typography.fonts.display}` in your styled components to use the theme `display` typeset.
+
+These typesets include a bundled font family from a third party source, such as Google Fonts, and are built on a foundation of the [modern system font stack](https://devhints.io/css-system-font-stack) for maximum compatibility across browsers and operating systems.
+
+## Bundled Font Families
+
+An example of the non-system font families and weights included in the design system default themes.
+
+#### Open Sans, 400 (regular)
+
+<Typeset fontSizes={[11, 12, 14, 16, 20, 24, 29, 35]} fontWeight={400} />
+
+#### Open Sans, 600 (bold)
+
+<Typeset fontSizes={[11, 12, 14, 16, 20, 24, 29, 35]} fontWeight={600} />

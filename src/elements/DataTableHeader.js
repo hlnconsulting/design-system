@@ -28,6 +28,7 @@ const StyledDataTableFilter = styled(({ ...rest }) => <div {...rest} />)`
 
 export const DataTableHeader = ({
     displayLabel,
+    filterPlaceholder,
     globalFilterContext,
     id,
     onFilterChange,
@@ -43,6 +44,7 @@ export const DataTableHeader = ({
                         onChange={(e) =>
                             onFilterChange(e.target.value || undefined)
                         }
+                        placeholder={filterPlaceholder}
                         value={globalFilterContext || ``}
                     />
                 </StyledDataTableFilter>
@@ -53,6 +55,7 @@ export const DataTableHeader = ({
 
 DataTableHeader.propTypes = {
     displayLabel: PropTypes.bool,
+    filterPlaceholder: PropTypes.string,
     id: PropTypes.string,
     onFilterChange: PropTypes.func,
     label: PropTypes.string,

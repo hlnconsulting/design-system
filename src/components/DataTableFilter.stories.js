@@ -4,14 +4,21 @@ import React from 'react';
 import { DataTableFilter } from './DataTableFilter';
 
 export default {
-    title: 'Components|Tables/Data Table Utilities/Filter',
-    component: DataTableFilter
+    title: 'Components/DataTable Utilities/Filter',
+    component: DataTableFilter,
+    parameters: {
+        componentSubtitle: `A simple search/filter field, built to support DataTables.`
+    }
 };
 
 export const dataTableFilter = () => {
     return (
         <>
-            <DataTableFilter />
+            <DataTableFilter
+                id="uniqueTableId--filter"
+                onChange={() => null}
+                placeholder="Placeholder value..."
+            />
             <br />
         </>
     );

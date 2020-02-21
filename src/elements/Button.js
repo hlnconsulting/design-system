@@ -170,6 +170,13 @@ const PaddedSpinner = styled(({ position, ...rest }) => <Spinner {...rest} />)`
         props.position === 'left' ? `0 0.667rem 0 0` : `0 0 0 0.667rem`};
 `;
 
+/**
+ * Buttons currently come in two flavors: `raised`, and `text`.
+ *
+ * They support a variety of options controlling apperance and functionality,
+ * including loading states, icon and icon positions, and more.
+ */
+
 export const Button = ({
     appearance,
     children,
@@ -218,16 +225,58 @@ export const Button = ({
 };
 
 Button.propTypes = {
-    appearance: PropTypes.oneOf([...ButtonOptions.appearance]),
+    /**
+     * Describes the color/intent of the overall button apperance.
+     */
+    appearance: PropTypes.oneOf([...ButtonOptions.appearance]).isRequired,
+    /**
+     * The component(s) to render within the styled button component.
+     */
     children: PropTypes.node.isRequired,
+    /**
+     * Passes through to the actual DOM element to disable interaction, and
+     * render a disabled state modified apperance.
+     */
     disabled: PropTypes.bool,
+    /**
+     * If defined with a URL string, the button will act as an anchor element.
+     */
     href: PropTypes.string,
-    icon: PropTypes.node,
+    /**
+     * The Material Design icon to render.
+     *
+     * For available icon options, please refer to the webfont documentation
+     * for [Material Design Icons](https://material.io/resources/icons/?style=baseline).
+     */
+    icon: PropTypes.string,
+    /**
+     * Which side of the button children components (in a `flex-row` container)
+     * should the icon be rendered.
+     *
+     * Controls both Material Icon and loading spinner placement.
+     */
     iconPosition: PropTypes.oneOf(['left', 'right']),
+    /**
+     * Indicates to the user on `:hover` that the button is indeed a button.
+     */
     interactive: PropTypes.bool,
+    /**
+     * Display a loading spinner/animation where an icon would normally reside.
+     */
     loading: PropTypes.bool,
+    /**
+     * Function to be called when an onPress/onClick event is fired.
+     */
     onClick: PropTypes.func,
+    /**
+     * Buttons come in three sizes, and the default label and icons will scale
+     * automatically with these values.
+     */
     size: PropTypes.oneOf([...ButtonOptions.size]),
+    /**
+     * If true, the button will be displayed as an inline text, that when
+     * hovered/focused, reveals more of a true button apperance.
+     */
     text: PropTypes.bool
 };
 

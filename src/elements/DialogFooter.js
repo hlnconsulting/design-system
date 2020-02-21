@@ -30,8 +30,20 @@ export const DialogFooter = ({ children, ...props }) => {
 };
 
 DialogFooter.propTypes = {
+    /**
+     * Defines if a border above the footer should be rendered.
+     */
     borderless: PropTypes.bool,
+    /**
+     * Children node(s) to be rendered.
+     */
     children: PropTypes.node,
+    /**
+     * Controls the flex direction and alignment of the children.
+     *
+     * If true, direction is set to column, and the children to be aligned
+     * to `flex-end`, or the right of the footer.
+     */
     stacked: PropTypes.bool
 };
 

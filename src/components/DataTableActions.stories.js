@@ -5,8 +5,11 @@ import { DataTable } from './DataTable';
 import { DataTableActions } from './DataTableActions';
 
 export default {
-    title: 'Components|Tables/Data Table Utilities/Actions',
-    component: DataTableActions
+    title: 'Components/DataTable Utilities/Actions',
+    component: DataTableActions,
+    parameters: {
+        componentSubtitle: `Represent line-item level actions as icon buttons.`
+    }
 };
 
 export const dataTableActions = () => {

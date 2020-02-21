@@ -1,64 +1,73 @@
 import React from 'react';
-
-import { storiesOf } from '@storybook/react';
 import { withKnobs, text, select, boolean } from '@storybook/addon-knobs';
 
 import { Text } from './../';
 import { Link } from './';
 
-storiesOf('Typography|Link', module)
-    .addDecorator(withKnobs)
-    .add('Default', () => {
-        let colorOptions = [
-            'default',
-            'muted',
-            'dark',
-            'selected',
-            'success',
-            'info',
-            'danger',
-            'warning'
-        ];
+export default {
+    title: 'Elements|Typography',
+    component: Link,
+    parameters: {
+        componentSubtitle: `Simple link element, similar to HTML's a.`
+    },
+    decorators: [withKnobs]
+};
 
-        let availableColors = {};
-        colorOptions.map((c, i) => (availableColors[c] = c));
+export const typoLink = () => {
+    let colorOptions = [
+        'default',
+        'muted',
+        'dark',
+        'selected',
+        'success',
+        'info',
+        'danger',
+        'warning'
+    ];
 
-        let controlledProps = {
-            color: select(
-                `Color`,
-                {
-                    '(undefined)': 'default',
-                    ...availableColors
-                },
-                'default'
-            ),
-            font: select(
-                `Font Family`,
-                {
-                    '(undefined)': 'ui',
-                    Display: 'display',
-                    'Text (UI)': 'ui',
-                    Monospace: 'mono'
-                },
-                'ui'
-            )
-        };
+    let availableColors = {};
+    colorOptions.map((c, i) => (availableColors[c] = c));
 
-        return (
-            <Text>
-                To learn more about the HLN Design System, you can{' '}
-                <Link
-                    href={text(
-                        `URL`,
-                        `https://github.com/hlnconsulting/design-system`
-                    )}
-                    target="_blank"
-                    underline={boolean(`Underline`, true)}
-                    {...controlledProps}
-                >
-                    {text(`Text`, `check out the repo`)}
-                </Link>
-                &nbsp;for information on documentation.
-            </Text>
-        );
-    });
+    let controlledProps = {
+        color: select(
+            `Link Color`,
+            {
+                '(undefined)': 'default',
+                ...availableColors
+            },
+            'default'
+        ),
+        font: select(
+            `Link Font Family`,
+            {
+                '(undefined)': 'ui',
+                Display: 'display',
+                'Text (UI)': 'ui',
+                Monospace: 'mono'
+            },
+            'ui'
+        )
+    };
+
+    return (
+        <Text>
+            To learn more about the HLN Design System, you can{' '}
+            <Link
+                href={text(
+                    `Link URL`,
+                    `https://github.com/hlnconsulting/design-system`
+                )}
+                target="_blank"
+                underline={boolean(`Underline`, true)}
+                {...controlledProps}
+            >
+                {text(`Link Text`, `check out the repo`)}
+            </Link>
+            &nbsp;for information on documentation.
+        </Text>
+    );
+};
+
+typoLink.story = {
+    name: 'Link (a)'
+};

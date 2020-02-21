@@ -6,7 +6,10 @@ import { ForceErrorBoundary } from './../elements/ForceErrorBoundary';
 
 export default {
     title: 'Components|Utilities/Error Boundary',
-    component: ErrorBoundary
+    component: ErrorBoundary,
+    parameters: {
+        componentSubtitle: `Capture fatal React/DOM errors while providing context to users.`
+    }
 };
 
 export const field = () => (

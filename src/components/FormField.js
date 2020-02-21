@@ -54,6 +54,15 @@ const RenderFormElementWithProps = (children, props) =>
         React.cloneElement(child, { ...props })
     );
 
+/**
+ * In most cases, user input fields come in groups; FormField attempts to
+ * present a standardized approach to visually arrange these inputs, as well as
+ * to expose some baked-in utility functionality, such as setting a field to
+ * readOnly to render only the current value, to accept a standardized error
+ * message, and to ensure a baseline implementation of accessibility best
+ * practices.
+ */
+
 export const FormField = ({
     basis,
     children,
@@ -91,18 +100,66 @@ export const FormField = ({
 };
 
 FormField.propTypes = {
+    /**
+     * If set, applies a `flex-basis` value to the inset field wrapper.
+     *
+     * This is recommended for forms where responsively sized fields are
+     * appropriate.
+     */
     basis: PropTypes.number,
+    /**
+     * _Reserved for future use_; to indicate if a value has changed since last
+     * save action.
+     */
     changed: PropTypes.bool,
+    /**
+     * The input component to be rendered.
+     */
     children: PropTypes.node.isRequired,
+    /**
+     * There are three ways to indicate a field error: by bassing a boolean
+     * value to render the label with red text, and add a red outline to
+     * the input field (if applicable); by passing a string to be displayed
+     * underneath the field; or by passing an object with a `body:` parameter
+     * for the message to be displayed.
+     *
+     * We recommend for greatest forward flexibility, using the object option
+     * where possible, as future extensibility of error status rendering will
+     * be controlled through additional object parameters.
+     */
     error: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.object,
         PropTypes.string
     ]),
-    label: PropTypes.node,
+    /**
+     * The label component to be rendered.
+     *
+     * Alternatively, can simply pass a string to have default formatting
+     * applied.
+     */
+    label: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
+    /**
+     * For accessibility purposes; should match the DOM element ID of the
+     * child input component.
+     */
     labelFor: PropTypes.string.isRequired,
+    /**
+     * Passed through to the child input component. Used to display a
+     * `readOnly` value where supported.
+     */
     readOnly: PropTypes.bool,
+    /**
+     * Display a message underneath the label, in a smaller font size than the
+     * default label component.
+     */
     subtext: PropTypes.node,
+    /**
+     * If set, applies a `flex-basis` value to the inset field wrapper.
+     *
+     * This is recommended for forms where responsively sized fields are
+     * appropriate.
+     */
     width: PropTypes.number
 };
 
