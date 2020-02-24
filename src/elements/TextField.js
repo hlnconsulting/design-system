@@ -59,8 +59,8 @@ export const TextField = ({
         error: error,
         readOnly: readOnly,
         ...inputProps,
-        ...prefix,
-        ...suffix
+        prefix,
+        suffix
     };
 
     return (

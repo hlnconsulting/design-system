@@ -126,6 +126,12 @@ FormField.propTypes = {
      * We recommend for greatest forward flexibility, using the object option
      * where possible, as future extensibility of error status rendering will
      * be controlled through additional object parameters.
+     *
+     * ```javascript
+     * {
+     *   body: ``,
+     * }
+     * ```
      */
     error: PropTypes.oneOfType([
         PropTypes.bool,

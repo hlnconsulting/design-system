@@ -37,8 +37,8 @@ export const SelectField = ({
     const inputPropsRemapped = {
         error: error,
         ...inputProps,
-        ...prefix,
-        ...suffix
+        prefix,
+        suffix
     };
     const hlnThemeContext = useContext(ThemeContext);
 
