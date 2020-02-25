@@ -77,15 +77,47 @@ export const TextField = ({
 };
 
 TextField.propTypes = {
+    /**
+     * Enables browser autocomplete, or if you are feeling nice to your users,
+     * allows for a [variety of string options](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#Values)
+     * to provide context to the browser, password managers, etc.
+     */
     autoComplete: PropTypes.string,
     disabled: PropTypes.bool,
+    /**
+     * **Please note,** that this is typically set at the `<FormField />`
+     * level, and not on this lower level element component.
+     *
+     * There are three ways to indicate a field error: by bassing a boolean
+     * value to render the label with red text, and add a red outline to
+     * the input field (if applicable); by passing a string to be displayed
+     * underneath the field; or by passing an object with a `body:` parameter
+     * for the message to be displayed.
+     *
+     * We recommend for greatest forward flexibility, using the object option
+     * where possible, as future extensibility of error status rendering will
+     * be controlled through additional object parameters.
+     *
+     * ```javascript
+     * {
+     *   body: ``,
+     * }
+     * ```
+     */
     error: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.object,
         PropTypes.string
     ]),
     id: PropTypes.string.isRequired,
+    /**
+     * If desired, an object of parameters to be spread over the `<Input />`
+     * element.
+     */
     inputProps: PropTypes.object,
+    /**
+     * Enables display and functionality of `<textarea />` input.
+     */
     multiline: PropTypes.bool,
     name: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
@@ -94,8 +126,14 @@ TextField.propTypes = {
     readOnly: PropTypes.bool,
     size: PropTypes.oneOf([...TextInputOptions.size]),
     suffix: PropTypes.node,
+    /**
+     * Sets the supported input type; useful for responsive interfaces.
+     */
     type: PropTypes.oneOf([...TextInputOptions.type]).isRequired,
     value: PropTypes.string,
+    /**
+     * Sets the text-align of the value within the input wrapper.
+     */
     valueAlign: PropTypes.string
 };
 

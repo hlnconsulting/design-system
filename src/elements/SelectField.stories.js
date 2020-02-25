@@ -8,6 +8,9 @@ import { SelectField } from './SelectField';
 export default {
     title: 'Elements|Form/Select Input',
     component: SelectField,
+    parameters: {
+        componentSubtitle: `Versatile blend of dropdown, autocomplete/matrix, and multi-select in a single component.`
+    },
     decorators: [withKnobs]
 };
 

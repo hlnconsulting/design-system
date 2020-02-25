@@ -6,7 +6,11 @@ import { RadioField } from './RadioField';
 
 const RadioGroupComponent = styled(({ ...rest }) => <div {...rest} />)``;
 
-const RadioGroup = ({ id, name, onChange, options, selected, ...props }) => {
+/**
+ * Higher-order-component of sorts for use with `<RadioField />`'s.
+ */
+
+const RadioGroup = ({ id, name, options, selected, ...props }) => {
     return (
         <RadioGroupComponent id={id}>
             {options.map((option, i) => (
@@ -15,7 +19,6 @@ const RadioGroup = ({ id, name, onChange, options, selected, ...props }) => {
                     id={`__ri_${name}_${i}`}
                     key={`__ri_${name}_${i}`}
                     name={name}
-                    onChange
                     {...option}
                     {...props}
                 />
@@ -26,16 +29,32 @@ const RadioGroup = ({ id, name, onChange, options, selected, ...props }) => {
 
 RadioGroup.propTypes = {
     disabled: PropTypes.bool,
-    id: PropTypes.string,
+    /**
+     * For accesibility purposes, define a unique identifier for this radio group.
+     */
+    id: PropTypes.string.isRequired,
+    /**
+     * For accesibility purposes, define a unique name for each child `<RadioField />`.
+     */
     name: PropTypes.string.isRequired,
+    /**
+     * An array of parameters to map as child `<RadioField />` elements, with
+     * each option's parameters being mapped as props. "Checked" is controlled
+     * by a comparison of `selected` prop, and an option's `value` param.
+     */
     options: PropTypes.array.isRequired,
+    /**
+     * Indicate the value that is to be compared as the current selection.
+     */
     selected: PropTypes.string,
-    onChange: PropTypes.func,
+    /**
+     * Change the size of the mock radio circle, and as they scale together,
+     * the size of the accompanying label.
+     */
     size: PropTypes.number
 };
 
 RadioGroup.defaultProps = {
-    onChange: () => null,
     size: 20
 };
 
