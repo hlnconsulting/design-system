@@ -42,11 +42,26 @@ export const Dialog = ({ children, close, visible, ...props }) => {
 };
 
 Dialog.propTypes = {
+    /**
+     * The actual component(s) to render within the `<Dialog />` card.
+     */
     children: PropTypes.node.isRequired,
+    /**
+     * The function by which to set `visible={false}`, and if defined,
+     * renders a "x" close button in the `<DialogHeader />`.
+     */
     close: PropTypes.func,
+    /**
+     * For accesibility purposes, define a unique identifier for this dialog.
+     */
     id: PropTypes.string.isRequired,
-    label: PropTypes.string,
+    /**
+     * Controls the width of the `<Dialog />` card.
+     */
     size: PropTypes.oneOf([...DialogOptions.size]),
+    /**
+     * Sets the visibility of the actual card and modal.
+     */
     visible: PropTypes.bool
 };
 

@@ -8,8 +8,11 @@ import { SwitchField } from './../elements/SwitchField';
 import { TextField } from './../elements/TextField';
 
 export default {
-    title: 'Components|Form/Field',
+    title: 'Components|FormField',
     component: FormField,
+    parameters: {
+        componentSubtitle: `A standardized approach to displaying inputs.`
+    },
     decorators: [withKnobs]
 };
 
@@ -71,6 +74,18 @@ export const field = () => {
                     label={[`Another Thing 1`, `Another Thing 2`]}
                     name="story_field_input_03"
                     radioMode
+                />
+            </FormField>
+            <FormField
+                error={errorState}
+                label="Read Only <TextField />"
+                labelFor="story_field_input_04"
+                readOnly
+            >
+                <TextField
+                    id="story_field_input_04"
+                    name="story_field_input_04"
+                    value="I'm a readOnly text field."
                 />
             </FormField>
         </>

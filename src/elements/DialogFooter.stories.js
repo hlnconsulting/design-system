@@ -10,7 +10,10 @@ const CloseDialog = () => null;
 
 export default {
     title: 'Elements|Dialog/Dialog Footer',
-    component: DialogFooter
+    component: DialogFooter,
+    parameters: {
+        componentSubtitle: `Define a series of actions/buttons to be rendered as part of a Dialog.`
+    }
 };
 
 export const dialogFooter = () => (

@@ -11,6 +11,9 @@ import { DialogHeader } from './../elements/DialogHeader';
 export default {
     title: 'Components|Dialog',
     component: Dialog,
+    parameters: {
+        componentSubtitle: `Present users with meaningful information, or drive interaction with a Dialog overlay.`
+    },
     decorators: [withKnobs]
 };
 
