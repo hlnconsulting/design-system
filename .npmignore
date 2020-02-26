@@ -2,7 +2,7 @@
 .babelrc
 .eslintrc
 .prettierrc
-src/**/src/*.md
+src
 *.stories.js
 *.test.js
 

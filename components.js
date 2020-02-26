@@ -6,7 +6,7 @@ import {
     ErrorBoundary,
     FeedbackCard,
     FormField
-} from './components';
+} from './dist/components';
 
 export {
     DataTable,
