@@ -5,8 +5,11 @@ import { withKnobs, boolean, select } from '@storybook/addon-knobs';
 import FeedbackCard from './FeedbackCard';
 
 export default {
-    title: 'Components|Feedback/Card',
+    title: 'Components|FeedbackCard',
     component: FeedbackCard,
+    parameters: {
+        componentSubtitle: `Convey important information to users, without interrupting the normal layout or user flow.`
+    },
     decorators: [withKnobs]
 };
 
@@ -44,4 +47,20 @@ again.`
 
 field.story = {
     name: 'Overview'
+};
+
+export const noDetails = () => {
+    return (
+        <FeedbackCard
+            feedback={{
+                heading: `Success!`,
+                message: `That entry was updated.`
+            }}
+            intent={`success`}
+        />
+    );
+};
+
+noDetails.story = {
+    name: 'Success, no details'
 };

@@ -8,6 +8,12 @@ import { TextField } from './../elements/TextField';
 
 const ModifiedTextField = styled(({ ...rest }) => <TextField {...rest} />)``;
 
+/**
+ * This component is automatically rendered as part of the `<DataTable />`
+ * header, and is directly related to the `setGlobalFilter` method of
+ * `react-table`.
+ */
+
 export const DataTableFilter = ({ id, onChange, ...props }) => {
     const a11yProps = {};
 
@@ -29,12 +35,18 @@ export const DataTableFilter = ({ id, onChange, ...props }) => {
 };
 
 DataTableFilter.propTypes = {
+    /**
+     * This is set by `<DataTable />` automatically.
+     */
     id: PropTypes.string.isRequired,
+    /**
+     * This is set by `<DataTable />` automatically.
+     */
     onChange: PropTypes.func.isRequired,
-    placeholder: PropTypes.string
+    /**
+     * This is set by `<DataTable />` automatically.
+     */
+    placeholder: PropTypes.string.isRequired
 };
 
-DataTableFilter.defaultProps = {
-    onChange: () => null,
-    placeholder: `Search...`
-};
+DataTableFilter.defaultProps = {};

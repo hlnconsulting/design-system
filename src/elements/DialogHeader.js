@@ -68,8 +68,19 @@ export const DialogHeader = ({ children, close, ...props }) => {
 };
 
 DialogHeader.propTypes = {
+    /**
+     * Defines if a border below the header should be rendered.
+     */
     borderless: PropTypes.bool,
+    /**
+     * Children node(s) to be rendered.
+     */
     children: PropTypes.node,
+    /**
+     * A function to dismiss the dialog/modal.
+     *
+     * If defined, a close button will be rendered.
+     */
     close: PropTypes.func
 };
 

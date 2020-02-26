@@ -9,7 +9,10 @@ const CloseDialog = () => null;
 
 export default {
     title: 'Elements|Dialog/Dialog Header',
-    component: DialogHeader
+    component: DialogHeader,
+    parameters: {
+        componentSubtitle: `Render a title, and perhaps a close button.`
+    }
 };
 
 export const header = () => (

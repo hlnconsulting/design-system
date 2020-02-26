@@ -79,14 +79,20 @@ const CheckboxField = ({
 };
 
 CheckboxField.propTypes = {
+    checked: PropTypes.bool.isRequired,
     disabled: PropTypes.bool,
+    /**
+     * For accesibility purposes, define a unique identifier for this checkbox.
+     */
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    checked: PropTypes.bool.isRequired,
     label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
-    value: PropTypes.string,
+    /**
+     * Define a callback function to be triggered on user interaction.
+     */
     onChange: PropTypes.func,
-    size: PropTypes.number
+    size: PropTypes.number,
+    value: PropTypes.string
 };
 
 CheckboxField.defaultProps = {

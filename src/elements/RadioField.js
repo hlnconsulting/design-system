@@ -88,12 +88,34 @@ const RadioField = ({
 
 RadioField.propTypes = {
     disabled: PropTypes.bool,
+    /**
+     * For accesibility purposes, define a unique identifier for this field.
+     */
     id: PropTypes.string.isRequired,
+    /**
+     * For accesibility purposes, define a unique name for this field.
+     */
     name: PropTypes.string.isRequired,
+    /**
+     * Indicate if this `<RadioField />` should be marked as the current value.
+     */
     checked: PropTypes.bool.isRequired,
+    /**
+     * Provide a label as a string or component.
+     */
     label: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
+    /**
+     * The unique value for this particular option.
+     */
     value: PropTypes.string,
+    /**
+     * Define a callback function to be executed on user interaction.
+     */
     onChange: PropTypes.func,
+    /**
+     * Change the size of the mock radio circle, and as they scale together,
+     * the size of the accompanying label.
+     */
     size: PropTypes.number
 };
 

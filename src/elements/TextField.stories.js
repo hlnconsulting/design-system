@@ -6,6 +6,9 @@ import { TextField } from './TextField';
 
 export default {
     title: 'Elements|Form/Text Input',
+    parameters: {
+        componentSubtitle: `Reliable and functional.`
+    },
     component: TextField
 };
 

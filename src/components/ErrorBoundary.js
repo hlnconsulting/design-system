@@ -5,6 +5,11 @@ import PropTypes from 'prop-types';
 
 import FeedbackCard from './FeedbackCard';
 
+/**
+ * For more information on how to use error boundary compnenets with React,
+ * please refer to the [official documentation](https://reactjs.org/docs/error-boundaries.html).
+ */
+
 class ErrorBoundary extends PureComponent {
     constructor(props) {
         super(props);

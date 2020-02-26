@@ -1,9 +1,16 @@
 import React from 'react';
-
-import { storiesOf } from '@storybook/react';
 import { withKnobs, text, select } from '@storybook/addon-knobs';
 
 import { Text } from './';
+
+export default {
+    title: 'Elements|Typography',
+    component: Text,
+    parameters: {
+        componentSubtitle: `Simple text element, similar to HTML's span.`
+    },
+    decorators: [withKnobs]
+};
 
 const previewDatum = [
     { size: 600, semantic: 'span' },
@@ -12,7 +19,7 @@ const previewDatum = [
     { size: 300, semantic: 'span' }
 ];
 
-const previewComponent = (
+const previewTextComponent = (
     Component,
     innerChild,
     previewProps = previewDatum,
@@ -22,7 +29,7 @@ const previewComponent = (
         <Component
             {...datum}
             key={datum[keyIdx]}
-            style={{ display: 'block' }}
+            style={{ display: 'block', margin: '0 0 0.66rem 0' }}
             color={datum.color === null ? undefined : datum.color}
             font={datum.font === null ? undefined : datum.font}
         >
@@ -30,58 +37,60 @@ const previewComponent = (
         </Component>
     ));
 
-storiesOf('Typography|Text', module)
-    .addDecorator(withKnobs)
-    .add('Default', () => {
-        let colorOptions = [
-            'default',
-            'muted',
-            'dark',
-            'selected',
-            'success',
-            'info',
-            'danger',
-            'warning'
-        ];
+export const typoText = () => {
+    let colorOptions = [
+        'default',
+        'muted',
+        'dark',
+        'selected',
+        'success',
+        'info',
+        'danger',
+        'warning'
+    ];
 
-        let availableColors = {};
-        colorOptions.map((c, i) => (availableColors[c] = c));
+    let availableColors = {};
+    colorOptions.map((c, i) => (availableColors[c] = c));
 
-        let controlledProps = {
-            color: select(
-                `Color`,
-                {
-                    '(undefined)': null,
-                    ...availableColors
-                },
-                null
-            ),
-            font: select(
-                `Font Family`,
-                {
-                    '(undefined)': null,
-                    Display: 'display',
-                    'Text (UI)': 'ui',
-                    Monospace: 'mono'
-                },
-                null
-            )
+    let controlledProps = {
+        color: select(
+            `Color`,
+            {
+                '(undefined)': null,
+                ...availableColors
+            },
+            null
+        ),
+        font: select(
+            `Font Family`,
+            {
+                '(undefined)': null,
+                Display: 'display',
+                'Text (UI)': 'ui',
+                Monospace: 'mono'
+            },
+            null
+        )
+    };
+
+    let finalizedDatum = previewDatum.map((p, i) => {
+        return {
+            ...p,
+            ...controlledProps
         };
-
-        let finalizedDatum = previewDatum.map((p, i) => {
-            return {
-                ...p,
-                ...controlledProps
-            };
-        });
-
-        return previewComponent(
-            Text,
-            text(
-                `Text`,
-                `These are the voyages of the starship Enterprise. Its continuing mission: to explore strange new worlds... `
-            ),
-            finalizedDatum,
-            'size'
-        );
     });
+
+    return previewTextComponent(
+        Text,
+        text(
+            `Text`,
+            `These are the voyages of the starship Enterprise. Its continuing mission: to explore strange new worlds... `
+        ),
+        finalizedDatum,
+        'size'
+    );
+};
+
+typoText.story = {
+    name: 'Text (span)'
+};

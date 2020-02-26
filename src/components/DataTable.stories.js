@@ -10,9 +10,12 @@ import { MaterialIcon } from './../elements/MaterialIcon';
 const chance = require('chance').Chance();
 
 export default {
-    title: 'Components|Tables',
+    title: 'Components/DataTable',
     component: DataTable,
-    decorators: [withKnobs]
+    decorators: [withKnobs],
+    parameters: {
+        componentSubtitle: `Extensible, hooks based table for representing datasets.`
+    }
 };
 
 export const dataTable = () => {

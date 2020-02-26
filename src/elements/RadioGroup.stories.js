@@ -7,6 +7,7 @@ import { RadioGroup } from './RadioGroup';
 export default {
     title: 'Elements|Form/Radio Field',
     component: RadioField,
+    subcomponents: { RadioGroup },
     decorators: [withKnobs]
 };
 
@@ -25,6 +26,19 @@ const RadioGroupOptions = [
         label: `Option 2`
     }
 ];
+
+export const fieldBasic = () => (
+    <RadioField
+        id="sb_inputs_radio_basic"
+        name="sb_inputs_radio_basic"
+        checked
+        label={<span>Radio Field</span>}
+    />
+);
+
+fieldBasic.story = {
+    name: 'Overview'
+};
 
 export const fieldGroup = () => (
     <RadioGroup

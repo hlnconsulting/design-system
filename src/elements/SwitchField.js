@@ -145,12 +145,29 @@ SwitchField.propTypes = {
     disabled: PropTypes.bool,
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
+    /**
+     * Similar in execution to Radio fields.
+     */
     checked: PropTypes.bool.isRequired,
+    /**
+     * Pass a string, or when `radioMode` is enabled, an array of two strings,
+     * to be rendered as an accesible label for this toggle switch field.
+     */
     label: PropTypes.oneOfType([PropTypes.string, PropTypes.array]).isRequired,
     onBlur: PropTypes.func,
+    /**
+     * Callback function that is passed a synthetic event based on user interaction.
+     */
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
+    /**
+     * Enables the ability to have a label for the checked and unchecked value,
+     * and an alternate weight is assigned to the currently "selected" label.
+     */
     radioMode: PropTypes.bool,
+    /**
+     * Scale the toggle and label.
+     */
     size: PropTypes.number
 };
 

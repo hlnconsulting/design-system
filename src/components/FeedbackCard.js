@@ -121,16 +121,35 @@ class FeedbackCard extends PureComponent {
             </ErrorCard>
         );
     }
-
-    static propTypes = {
-        details: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-        feedback: PropTypes.object.isRequired,
-        intent: PropTypes.string.isRequired
-    };
-
-    static defaultProps = {
-        intent: `warning`
-    };
 }
+
+FeedbackCard.propTypes = {
+    details: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+    /**
+     * An object that defines the text to render as part of the feedback card.
+     * Both options are optional, and we recommend following the Material Design
+     * recommendations for [describing purpose](https://material.io/components/dialogs/#anatomy)
+     * when defining feedback card messages.
+     *
+     * For example:
+     *
+     * ```javascript
+     * {
+     *   heading: ``,
+     *   message: ``
+     * }
+     * ```
+     */
+    feedback: PropTypes.object.isRequired,
+    /**
+     * Defines which color band to use, and if `details` has a value, the
+     * background color used when the card is expanded.
+     */
+    intent: PropTypes.oneOf(['success', 'info', 'warning', 'danger']).isRequired
+};
+
+FeedbackCard.defaultProps = {
+    intent: `info`
+};
 
 export default FeedbackCard;
