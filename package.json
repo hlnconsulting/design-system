@@ -46,7 +46,8 @@
         "jest": "^24.8.0",
         "prettier": "^1.18.2",
         "rimraf": "^3.0.0",
-        "storybook-addon-styled-component-theme": "^1.2.5"
+        "storybook-addon-styled-component-theme": "^1.2.5",
+        "styled-components": "^5.0.0"
     },
     "dependencies": {
         "date-fns": "^2.9.0",
@@ -60,8 +61,10 @@
         "react-number-format": "^4.0.8",
         "react-select": "^3.0.4",
         "react-table": "^7.0.0-rc.9",
-        "react-transition-group": "^4.3.0",
-        "styled-components": "^5.0.0"
+        "react-transition-group": "^4.3.0"
+    },
+    "peerDependencies": {
+        "styled-components": ">= 5"
     },
     "scripts": {
         "clean": "rimraf ./dist",
