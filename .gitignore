@@ -2,6 +2,7 @@
 *.lock
 /cypress/screenshots
 /cypress/videos
+/dist
 /public
 
 # Created by https://www.gitignore.io/api/node,linux,macos,windows,intellij,webstorm,reactnative

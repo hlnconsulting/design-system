@@ -27,7 +27,7 @@ import {
     Text,
     TextField,
     Undraw
-} from './elements';
+} from './dist/elements';
 
 export {
     Button,
