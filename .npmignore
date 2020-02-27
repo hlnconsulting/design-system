@@ -4,6 +4,8 @@
 .prettierrc
 *.stories.js
 *.test.js
+/src
+/src/**
 
 ####### From .gitignore
 
