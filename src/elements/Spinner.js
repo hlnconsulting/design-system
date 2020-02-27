@@ -115,10 +115,9 @@ const Spinner = ({ size, ...props }) => {
 Spinner.propTypes = {
     theme: PropTypes.object,
     color: PropTypes.string,
-    id: PropTypes.string.isRequired,
     options: PropTypes.object,
     primary: PropTypes.bool,
-    size: PropTypes.string
+    size: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
 
 Spinner.defaultProps = {

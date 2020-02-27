@@ -18,11 +18,11 @@ const EmptyStateContainer = styled(({ ...rest }) => <div {...rest} />)`
     padding: 3rem 1.33rem 2rem 1.33rem;
 `;
 
-export const TableEmptyState = ({ cols, ...props }) => {
+export const TableEmptyState = ({ cols, error, ...props }) => {
     const a11yProps = {};
 
     return (
-        <TableCell colspan={cols}>
+        <TableCell colSpan={cols}>
             <EmptyStateContainer {...a11yProps} {...props}>
                 {RenderEmptyStateContent({ ...props })}
             </EmptyStateContainer>
