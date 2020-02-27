@@ -12,7 +12,7 @@ const TextInputOptions = {
         md: 1,
         lg: 1.17
     },
-    type: ['text', 'tel', 'email', 'password', 'url']
+    type: ['text', 'tel', 'email', 'password', 'url', 'number']
 };
 
 const TextInput = styled(
@@ -130,7 +130,7 @@ TextField.propTypes = {
      * Sets the supported input type; useful for responsive interfaces.
      */
     type: PropTypes.oneOf([...TextInputOptions.type]).isRequired,
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     /**
      * Sets the text-align of the value within the input wrapper.
      */

@@ -41,6 +41,7 @@ export const DataTableHeader = ({
             {typeof onFilterChange === 'function' && (
                 <StyledDataTableFilter>
                     <DataTableFilter
+                        id={id}
                         onChange={(e) =>
                             onFilterChange(e.target.value || undefined)
                         }

@@ -42,7 +42,7 @@ const AvatarImage = styled(({ size, type, ...rest }) => <img {...rest} />)`
     ${(props) => props.type === 'Circle' && `border-radius: 100%;`}
 `;
 
-const AvatarFallback = styled(({ hash, name, size, type, ...rest }) => (
+const AvatarFallback = styled(({ hash, name, size, solid, type, ...rest }) => (
     <div {...rest} />
 ))`
     display: flex;

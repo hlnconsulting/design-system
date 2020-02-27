@@ -213,7 +213,7 @@ export const Button = ({
             disabled={loading || disabled}
             hasIcon={!!icon}
             iconPosition={iconPosition}
-            loading={loading}
+            loading={loading.toString()}
             {...a11yProps}
             {...props}
         >

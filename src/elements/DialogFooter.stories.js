@@ -18,7 +18,7 @@ export default {
 
 export const dialogFooter = () => (
     <div style={{ height: `30rem` }}>
-        <Dialog close={CloseDialog} visible>
+        <Dialog close={CloseDialog} id={`storybook_dialog_footer_00`} visible>
             <DialogBody />
             <DialogFooter>
                 <Button appearance="secondary" text>
@@ -38,7 +38,7 @@ dialogFooter.story = {
 
 export const dialogFooterStacked = () => (
     <div style={{ height: `30rem` }}>
-        <Dialog close={CloseDialog} visible>
+        <Dialog close={CloseDialog} id={`storybook_dialog_footer_01`} visible>
             <DialogBody />
             <DialogFooter stacked>
                 <Button appearance="secondary" text>

@@ -17,7 +17,7 @@ export default {
 
 export const header = () => (
     <div style={{ height: `30rem` }}>
-        <Dialog close={CloseDialog} visible>
+        <Dialog close={CloseDialog} id={`storybook_dialog_header_00`} visible>
             <DialogHeader close={() => null}>Header with Close</DialogHeader>
             <DialogBody />
         </Dialog>
@@ -30,7 +30,7 @@ header.story = {
 
 export const headerWithoutClose = () => (
     <div style={{ height: `30rem` }}>
-        <Dialog close={CloseDialog} visible>
+        <Dialog close={CloseDialog} id={`storybook_dialog_header_01`} visible>
             <DialogHeader>Header without Close</DialogHeader>
             <DialogBody />
         </Dialog>

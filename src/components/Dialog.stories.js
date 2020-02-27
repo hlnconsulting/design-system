@@ -24,6 +24,7 @@ export const dialog = () => {
         <div style={{ height: `30rem` }}>
             <Dialog
                 close={CloseDialog}
+                id={`storybook_dialog_00`}
                 visible
                 size={select(
                     `Size`,
