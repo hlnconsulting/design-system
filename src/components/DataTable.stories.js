@@ -255,3 +255,77 @@ export const dataTableWithPagination = () => {
 dataTableWithPagination.story = {
     name: 'Data Table with Pagination'
 };
+
+export const dataTableDeferredSave = () => {
+    const DataTableSampleData = {
+        columns: React.useMemo(
+            () => [
+                {
+                    Header: `Random GUID`,
+                    accessor: `guid`
+                },
+                {
+                    Header: `Deferred Save Type`,
+                    accessor: `type`
+                }
+            ],
+            []
+        ),
+        data: React.useMemo(
+            () => [
+                {
+                    guid: `f49ff0f4-caa5-42da-a9ec-39d7c098c22c`,
+                    type: `Normal Data Row`
+                },
+                {
+                    DeferredSaveIndicator: `edited`,
+                    guid: `578fcbef-da8e-4d9f-9364-472ac93e7ce5`,
+                    type: `Edited Data Row`
+                },
+                {
+                    guid: `38a78d53-19af-4db6-a398-1d7e0806119b`,
+                    type: `Normal Data Row`
+                },
+                {
+                    DeferredSaveIndicator: `deleted`,
+                    guid: `73e33270-fcba-48dd-a374-309142db4ae1`,
+                    type: `Deleted Data Row`
+                },
+                {
+                    guid: `02ba3bcc-3e92-481e-8c2f-fb27b6a70a9e`,
+                    type: `Normal Data Row`
+                },
+                {
+                    DeferredSaveIndicator: `created`,
+                    guid: `b147f4ea-0a03-41bb-818e-19c5242ba637`,
+                    type: `Added/New Data Row`
+                }
+            ],
+            []
+        )
+    };
+
+    return (
+        <>
+            <DataTable
+                columns={DataTableSampleData.columns}
+                data={DataTableSampleData.data}
+                fullWidth={boolean(`Full Width Table`, true)}
+                entityLabels={{
+                    singular: `Deffered Save Line Item`,
+                    plural: `Deffered Save Line Items`
+                }}
+                error={boolean(`Error State?`, false)}
+                id="story_datatable_03"
+                label="Deferred Save Example"
+                loading={boolean(`Loading Rows?`, false)}
+                showControlDeck={boolean(`Control Deck`, true)}
+                showHeader={boolean(`Table Header`, true)}
+            />
+        </>
+    );
+};
+
+dataTableDeferredSave.story = {
+    name: 'Data Table with Deferred Save Indicators'
+};

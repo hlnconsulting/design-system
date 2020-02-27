@@ -194,9 +194,23 @@ export const DataTable = ({
                     {!error && rows.length ? (
                         (paginated && page ? page : rows).map((row, i) => {
                             prepareRow(row);
+
+                            let customRowProps = {};
+
+                            if (
+                                typeof row?.original?.DeferredSaveIndicator !==
+                                'undefined'
+                            ) {
+                                customRowProps.dsi =
+                                    row.original.DeferredSaveIndicator;
+                            }
+
                             return (
                                 // eslint-disable-next-line react/jsx-key
-                                <TableRow {...row.getRowProps()}>
+                                <TableRow
+                                    {...customRowProps}
+                                    {...row.getRowProps()}
+                                >
                                     {row.cells.map((cell) => (
                                         // eslint-disable-next-line react/jsx-key
                                         <RenderDataTableCell datum={cell} />
