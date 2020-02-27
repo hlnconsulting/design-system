@@ -13,7 +13,7 @@ const StyledTbody = styled(({ ...rest }) => <tbody {...rest} />)`
     }
 `;
 
-const LoadingInterstitial = styled(({ ...rest }) => <div {...rest} />)`
+const LoadingInterstitial = styled(({ ...rest }) => <tbody {...rest} />)`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -38,7 +38,11 @@ export const TableBody = ({ children, loading, ...props }) => {
             </StyledTbody>
             {loading && (
                 <LoadingInterstitial>
-                    <Spinner primary size={96} />
+                    <tr>
+                        <td>
+                            <Spinner primary size={96} />
+                        </td>
+                    </tr>
                 </LoadingInterstitial>
             )}
         </>

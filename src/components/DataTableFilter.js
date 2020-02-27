@@ -27,6 +27,7 @@ export const DataTableFilter = ({ id, onChange, ...props }) => {
                     flexBasis: `33.337%`
                 }
             }}
+            name={`${id}--filter-field`}
             size={`sm`}
             {...a11yProps}
             {...props}

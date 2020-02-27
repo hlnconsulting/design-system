@@ -23,7 +23,6 @@ import { MaterialIcon } from './../elements/MaterialIcon';
 const RenderDataTableCell = ({ datum, ...props }) => {
     return (
         <TableCell
-            {...datum.getCellProps()}
             style={{
                 ...(datum.column?.renderOptions?.columnStyles || {})
             }}
@@ -111,8 +110,13 @@ export const DataTable = ({
 
     const dataTableProps = {
         displayLabel: !!(typeof label && label),
-        filterPlaceholder,
         fullWidth,
+        id,
+        label
+    };
+
+    const dataTableHeaderProps = {
+        filterPlaceholder,
         id,
         label
     };
@@ -144,7 +148,7 @@ export const DataTable = ({
         <>
             {showHeader && (
                 <DataTableHeader
-                    {...dataTableProps}
+                    {...dataTableHeaderProps}
                     globalFilterContext={state.globalFilter}
                     onFilterChange={
                         paginated
@@ -194,12 +198,29 @@ export const DataTable = ({
                     {!error && rows.length ? (
                         (paginated && page ? page : rows).map((row, i) => {
                             prepareRow(row);
+
+                            let customRowProps = {};
+
+                            if (
+                                typeof row?.original?.DeferredSaveIndicator !==
+                                'undefined'
+                            ) {
+                                customRowProps.dsi =
+                                    row.original.DeferredSaveIndicator;
+                            }
+
                             return (
                                 // eslint-disable-next-line react/jsx-key
-                                <TableRow {...row.getRowProps()}>
+                                <TableRow
+                                    {...customRowProps}
+                                    {...row.getRowProps()}
+                                >
                                     {row.cells.map((cell) => (
                                         // eslint-disable-next-line react/jsx-key
-                                        <RenderDataTableCell datum={cell} />
+                                        <RenderDataTableCell
+                                            datum={cell}
+                                            {...cell.getCellProps()}
+                                        />
                                     ))}
                                 </TableRow>
                             );

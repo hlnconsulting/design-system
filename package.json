@@ -71,10 +71,10 @@
         "storybook": "start-storybook -p 6006",
         "build-storybook": "build-storybook",
         "build": "build-storybook -c .storybook -o public",
-        "prepublish": "babel src --out-dir dist --ignore \"src/**/*.stories.js\"",
-        "prepublishOnly": "mv src/ ../",
-        "postpublish": "mv ../src /",
+        "prepublish": "yarn clean && babel src --out-dir dist --ignore \"src/**/*.stories.js\"",
+        "prepublishOnly": "echo 'prepublishOnly'",
+        "postpublish": "echo 'postpublish'",
         "test": "jest"
     },
-    "version": "0.7.1"
+    "version": "0.7.3"
 }
