@@ -257,6 +257,24 @@ dataTableWithPagination.story = {
 };
 
 export const dataTableDeferredSave = () => {
+    const DataTableSampleActions = [
+        {
+            action: () => null,
+            label: `Create`,
+            icon: `post_add`
+        },
+        {
+            action: () => null,
+            label: `Edit`,
+            icon: `edit`
+        },
+        {
+            action: () => null,
+            label: `Delete`,
+            icon: `delete`
+        }
+    ];
+
     const DataTableSampleData = {
         columns: React.useMemo(
             () => [
@@ -267,6 +285,12 @@ export const dataTableDeferredSave = () => {
                 {
                     Header: `Deferred Save Type`,
                     accessor: `type`
+                },
+                {
+                    Header: ``,
+                    accessor: `DataTableActions`,
+                    disableSortBy: true,
+                    DataTableActions: true
                 }
             ],
             []
@@ -274,28 +298,34 @@ export const dataTableDeferredSave = () => {
         data: React.useMemo(
             () => [
                 {
+                    DataTableActions: [...DataTableSampleActions],
                     guid: `f49ff0f4-caa5-42da-a9ec-39d7c098c22c`,
                     type: `Normal Data Row`
                 },
                 {
+                    DataTableActions: [...DataTableSampleActions],
                     DeferredSaveIndicator: `edited`,
                     guid: `578fcbef-da8e-4d9f-9364-472ac93e7ce5`,
                     type: `Edited Data Row`
                 },
                 {
+                    DataTableActions: [...DataTableSampleActions],
                     guid: `38a78d53-19af-4db6-a398-1d7e0806119b`,
                     type: `Normal Data Row`
                 },
                 {
+                    DataTableActions: [...DataTableSampleActions],
                     DeferredSaveIndicator: `deleted`,
                     guid: `73e33270-fcba-48dd-a374-309142db4ae1`,
                     type: `Deleted Data Row`
                 },
                 {
+                    DataTableActions: [...DataTableSampleActions],
                     guid: `02ba3bcc-3e92-481e-8c2f-fb27b6a70a9e`,
                     type: `Normal Data Row`
                 },
                 {
+                    DataTableActions: [...DataTableSampleActions],
                     DeferredSaveIndicator: `created`,
                     guid: `b147f4ea-0a03-41bb-818e-19c5242ba637`,
                     type: `Added/New Data Row`
