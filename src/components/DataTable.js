@@ -116,6 +116,7 @@ export const DataTable = ({
     };
 
     const dataTableHeaderProps = {
+        displayLabel: !!(typeof label && label),
         filterPlaceholder,
         id,
         label
