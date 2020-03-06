@@ -142,7 +142,7 @@ const App = () => (
 To have the `theme` in all child styled component instances, you would first import the styled component `<ThemeProvider />` and the desired theme(s) as follows:
 
 ```javascript
-import { defaultTheme } from '@hln/design-system/theme';
+import { defaultTheme } from '@hln/design-system/themes';
 import { ThemeProvider } from 'styled-components';
 ```
 
