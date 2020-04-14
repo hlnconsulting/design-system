@@ -5,6 +5,7 @@ import { DataTableControlDeck } from './DataTableControlDeck';
 import { DataTableHeader } from './DataTableHeader';
 import { Input } from './Input';
 import { CheckboxField } from './CheckboxField';
+import { NumericalField } from './NumericalField';
 import { RadioField } from './RadioField';
 import { RadioGroup } from './RadioGroup';
 import { SwitchField } from './SwitchField';
@@ -41,6 +42,7 @@ export {
     Input,
     Link,
     MaterialIcon,
+    NumericalField,
     Paragraph,
     RadioField,
     RadioGroup,
