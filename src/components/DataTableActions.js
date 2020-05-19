@@ -47,6 +47,8 @@ export const DataTableActions = ({ actions, ...props }) => {
                         aria-label={action.label || `Action ${i}`}
                         key={`actionItem_${action?.label}_${i}`}
                         onClick={action?.action}
+                        title={action.label || `Action ${i}`}
+                        {...(action.buttonProps || {})}
                     >
                         <MaterialIcon
                             aria-hidden

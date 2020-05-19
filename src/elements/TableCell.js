@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const StyledCell = styled(({ ...rest }) => <td {...rest} />)`
+const StyledCell = styled(({ actions, ...rest }) => <td {...rest} />)`
     margin: 0;
     padding: 0.66rem;
 
@@ -12,6 +12,7 @@ const StyledCell = styled(({ ...rest }) => <td {...rest} />)`
         font-family: ${(props) => props.theme.typography.fonts.ui};
         font-size: 0.9rem;
         font-weight: 400;
+        ${(props) => (props.actions ? `text-decoration: none !important;` : ``)}
     }
 `;
 
@@ -26,7 +27,10 @@ export const TableCell = ({ children, ...props }) => {
 };
 
 TableCell.propTypes = {
+    actions: PropTypes.bool,
     children: PropTypes.node.isRequired
 };
 
-TableCell.defaultProps = {};
+TableCell.defaultProps = {
+    actions: false
+};
