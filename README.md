@@ -30,7 +30,7 @@ npm i @hln/design-system styled-components
 
 | `@hln/design-system` | React   | React Native | Styled Components |
 | -------------------- | ------- | ------------ | ----------------- |
-| `<1.0 Unreleased`    | `~16.9` | `~0.61`      | `~5.0`            |
+| `<1.0 Unreleased`    | `^17.0` | `~0.63`      | `~5.1`            |
 
 ## Using Design System Components
 
