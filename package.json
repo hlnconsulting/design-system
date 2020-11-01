@@ -55,7 +55,7 @@
         "moment": "^2.24.0",
         "polished": "^3.4.1",
         "prop-types": "^15.7.2",
-        "react": "^16.9",
+        "react": "^17.0.1",
         "react-content-loader": "^5.0.1",
         "react-dom": "^16.9",
         "react-number-format": "^4.0.8",
